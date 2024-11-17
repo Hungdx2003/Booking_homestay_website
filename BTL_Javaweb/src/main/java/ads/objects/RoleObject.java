@@ -10,4 +10,5 @@ public class RoleObject {
 	private int create_by;
 	private String role_created_at;
 	private String role_updated_at;
+	
 }
