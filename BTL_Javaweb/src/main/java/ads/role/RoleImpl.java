@@ -86,5 +86,4 @@ public class RoleImpl extends BasicImpl implements Role {
 		String sql="SELECT * FROM tblrole WHERE role_id=?";
 		return this.get(sql, id);
 	}
-	
 }
