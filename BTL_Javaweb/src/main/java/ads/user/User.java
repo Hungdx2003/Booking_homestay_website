@@ -13,4 +13,5 @@ public interface User {
 	ArrayList<ResultSet> getUser(UserObject similar, int at, byte total);
 	ResultSet getUser(int id);
 	ResultSet getUser(String username, String userpass);
+	
 }
