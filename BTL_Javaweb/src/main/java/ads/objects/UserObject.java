@@ -19,4 +19,5 @@ public class UserObject {
 	private Boolean user_is_active;
 	private String user_created_at;
 	private String user_updated_at;
+	
 }
