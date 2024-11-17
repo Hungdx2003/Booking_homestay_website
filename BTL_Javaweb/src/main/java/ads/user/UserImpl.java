@@ -135,7 +135,6 @@ public class UserImpl extends BasicImpl implements User {
 //        boolean isAdded = u.addUser( nItem);
 //        System.out.println(isAdded ? "User added successfully." : "Failed to add user.");
         
-        
 //        boolean isEdited = u.editUser(nItem);
 //        System.out.println(isEdited ? "User edited successfully." : "Failed to edit user.");
   
