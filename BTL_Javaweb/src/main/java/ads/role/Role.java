@@ -12,4 +12,5 @@ public interface Role {
 	
 	ArrayList<ResultSet> getRole(RoleObject similar, int at, byte total);
 	ResultSet getRole(int id);
+	
 }
