@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Stay</title>
+    <!-- Bootstrap 3.3.4 CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="table-responsive">
+            <table class="table align-middle table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Số phòng</th>
+                        <th>Loại phòng</th>
+                        <th>Số Khách</th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày trả</th>
+                        <th>Giá phòng</th>
+                        <th>VAT</th>
+                        <th>Tổng cộng</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>103</td>
+                        <td>Phòng cao cấp</td>
+                        <td>3</td>
+                        <td>03/11/2024</td>
+                        <td>07/11/2024</td>
+                        <td>1,000,000 VND</td>
+                        <td>10%</td>
+                        <td>1,100,000 VND</td>
+                        <td>Chưa xác nhận</td>
+                        <td>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#cancelModal">Huỷ đơn</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for cancel confirmation -->
+    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelModalLabel">Xác nhận huỷ đơn</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn huỷ đơn này không? Hành động này không thể hoàn tác.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-danger" id="confirmCancel">Xác nhận huỷ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for cancellation success -->
+    <div class="modal fade" id="cancelSuccessModal" tabindex="-1" role="dialog" aria-labelledby="cancelSuccessModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cancelSuccessModalLabel">Huỷ đơn thành công</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Đơn của bạn đã được huỷ thành công. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include necessary jQuery and Bootstrap 3.3.4 JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        // Event listener for cancel button
+        $('#confirmCancel').click(function() {
+            // Simulate cancellation success
+            $('#cancelModal').modal('hide');
+            $('#cancelSuccessModal').modal('show');
+        });
+    </script>
+</body>
+</html>
