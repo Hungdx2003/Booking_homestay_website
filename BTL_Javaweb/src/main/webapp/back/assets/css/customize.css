@@ -1,0 +1,250 @@
+.ngang{
+    display: flex;
+    position: relative;
+}
+.nut{
+    position: absolute;
+    right: 30px;
+}
+.chu-nho{
+  font-size: 12px;
+}
+.form-text1 {
+    margin-top: 0.15rem;
+    font-size: 12px;
+    color: var(--bs-secondary-color);
+  }
+.th1{
+    padding: 8px 1.5px !important;
+}
+.form-control1 {
+    display: block;
+    height: 2rem;
+    width: 100%;
+    padding: 0.1rem 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 2;
+    color: #111418;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #ccd2da;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin: 0 !important;
+}
+.form-control-so {
+    display: block;
+    height: 2rem;
+    width: 30px;
+    padding: 0.1rem 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 2;
+    color: #111418;
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #ccd2da;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control-dien-25 {
+  text-align: center;
+  display: block;
+  height: 1.5rem;
+  width: 25px;
+  padding: 0.1rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2;
+  color: #111418;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid #ccd2da;
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control-dien-50 {
+  text-align: center;
+  display: block;
+  height: 1.5rem;
+  width: 50px;
+  padding: 0.1rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2;
+  color: #111418;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid #ccd2da;
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-control-dien-100 {
+  text-align: center;
+  display: block;
+  height: 1.5rem;
+  width: 100px;
+  padding: 0.1rem 0.2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 2;
+  color: #111418;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid #ccd2da;
+  border-radius: var(--bs-border-radius);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-select1 {
+   
+    display: block;
+    height: 2rem;
+    width: 100%;
+    padding: 0.2rem 0.25rem ;
+    font-size: 0.8rem;
+    line-height: 2;
+    color: #111418;
+    appearance: none;
+    
+    border: var(--bs-border-width) solid #ccd2da;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+.pd-0{
+    padding: 0 !important;
+}
+.pdr-0{
+  padding-right: 0 !important;
+}
+.pdr-3{
+    padding: 0 0 3px 0 !important;
+}
+.pdlr-3{
+    padding-right: 1px !important;
+    padding-left: 1px !important;
+}
+.pd-5{
+    padding: 0 5px !important;
+}
+.mgr-5{
+    margin-right: 5px !important;
+}
+.pdl-3{
+    padding-left: 3px !important;
+}
+.password-container {
+  position: relative;
+  display: inline-block;
+}
+
+#password-input {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+#toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#toggle-password:before {
+  content: '\f06e'; /* FontAwesome icon for eye */
+  font-family: FontAwesome;
+  font-size: 16px;
+}
+
+#password-input:focus + #toggle-password::before {
+  content: '\f070'; /* FontAwesome icon for eye slash */
+}
+.icdvk{
+  position: relative;
+}
+.icdvkc{
+  position: absolute;
+  left: -1px;
+  top:1px;
+  
+}
+.icdvkc:hover .icdvkcmn{
+  display: block;
+}
+.oto{
+  height: 25px;
+}
+.ngaythu,.chonso{
+  position: relative;
+}
+.bi-calendar-check-fill{
+  position: absolute;
+  right: 10px;
+  top:39%;
+}
+.fs-3.bi{
+  position: absolute;
+}
+.bi-chevron-expand{
+  right: 10px;
+  top:38%;
+  
+}
+.it{
+  border-left: 1px solid rgb(199, 196, 196);
+  padding: 5px;
+}
+.hr-dam{
+  margin-right: 0px;
+  height:2px;
+  border-width:0;
+  color:blue;
+  background-color:blue;
+}
+.brand-link .brand-image {
+  float: left;
+  line-height: .8;
+  margin-left: .8rem;
+  margin-right: .5rem;
+  margin-top: -3px;
+  max-height: 50px;
+  width: auto;
+}
+/* .brand-text{
+  transition: margin-left .3s linear, opacity .3s ease, visibility .3s ease;
+}
+.font-weight-light {
+  font-weight: 300 !important;
+} */
+.app-brand {
+  text-align: center;
+  width: 100%;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-link .brand-image {
+  margin-right: 2.5rem; /* Tạo khoảng cách giữa logo và chữ */
+  margin-top: -3px;
+  max-height: 50px;
+  width: auto;
+}
+
+.brand-text {font-weight: bold;
+  font-size: 18px;
+  font-weight: 300 !important;
+  transition: margin-left .3s linear, opacity .3s ease, visibility .3s ease;
+}
+
+
