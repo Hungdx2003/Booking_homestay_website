@@ -1,10 +1,8 @@
 package ads.contact;
+import java.sql.*;
+import java.util.*;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import ads.object.ContactObject;
-
+import ads.object.*;
 public interface Contact {
 	boolean addContact(ContactObject item);
 	boolean editContact(ContactObject item);
@@ -15,3 +13,4 @@ public interface Contact {
 	ResultSet getContact(int id);
 	ResultSet getContact(String Contactname, String Contactpass);
 }
+

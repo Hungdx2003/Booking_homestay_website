@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import ads.basic.BasicImpl;
 import ads.object.ContactObject;
 
-public class ContactImpl implements Contact {
+public class ContactImpl extends BasicImpl implements Contact{
 	
 	public ContactImpl() {
 		super("Contact");
