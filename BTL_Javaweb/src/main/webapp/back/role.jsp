@@ -112,7 +112,7 @@
 										<div class="card-header ngang">
 											<h4 class="card-title">Danh sách quyền</h4>
 											<div class="nut">
-												<a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
+												<a type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal" name="addButton">
 													<i class="bi bi-plus-circle"></i> Thêm quyền
 												</a>
 											</div>	
@@ -130,7 +130,7 @@
 															</tr>
 														</thead>
 														
-														<tbody id="roomTable">
+														<tbody id="roleTable">
 															<%
 															try {
 																while(a.next()) {
@@ -140,10 +140,10 @@
 																<td class="name"><%=a.getString("role_name") %></td>
 																<td><%=a.getString("role_updated_at") %></td>
 																<td>
-																	<a class="btn btn-primary btn-sm editBtn" href="#" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="passIdToModal('<%= a.getInt("role_id") %>')">
+																	<a class="btn btn-primary btn-sm editBtn" href="#" name="update" data-bs-toggle="modal" data-bs-target="#updateModal" onclick="passIdToModal('<%= a.getInt("role_id") %>')">
 																		<i class="bi bi-pencil-square"></i> Sửa
 																	</a>
-																	<a class="btn btn-danger btn-sm deleteBtn" href="#" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="passIdToDelModal('<%= a.getInt("role_id") %>')">
+																	<a class="btn btn-danger btn-sm deleteBtn" href="#" name="del" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="passIdToDelModal('<%= a.getInt("role_id") %>')">
 																		<i class="bi bi-trash"></i> Xoá
 																	</a>
 																</td>
@@ -175,16 +175,16 @@
 																</div>
 																<div class="form-group">
 																	<label>Quyền cụ thể</label><br>
-																	<input type="checkbox" name="options" value="read" class="form-check-input"> Read <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="options" value="create" class="form-check-input"> Create <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="options" value="update" class="form-check-input"> Update <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="options" value="delete" class="form-check-input"> Delete <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="options" value="public" class="form-check-input"> Public <span style="margin-right: 20px;"></span>
+																	<input type="checkbox" name="options" id="read" value="read" class="form-check-input"> Read <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="options" id="create" value="create" class="form-check-input"> Create <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="options" id="update" value="update" class="form-check-input"> Update <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="options" id="del" value="delete" class="form-check-input"> Delete <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="options" id="public" value="public" class="form-check-input"> Public <span style="margin-right: 20px;"></span>
 																</div>
 															</div>
 															<div class="modal-footer">
 																<button type="button" class="btn btn-default" data-bs-dismiss="modal">Đóng</button>
-																<button type="submit" class="btn btn-primary">Thêm</button>
+																<button type="submit" class="btn btn-primary" name="add">Thêm</button>
 															</div>
 														</form>
 													</div>
@@ -225,11 +225,11 @@
 																</div>
 																<div class="form-group">
 																	<label>Quyền cụ thể</label><br>
-																	<input type="checkbox" name="e_options" value="read" class="form-check-input"> Read <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="e_options" value="create" class="form-check-input"> Create <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="e_options" value="update" class="form-check-input"> Update <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="e_options" value="delete" class="form-check-input"> Delete <span style="margin-right: 20px;"></span>
-																    <input type="checkbox" name="e_options" value="public" class="form-check-input"> Public <span style="margin-right: 20px;"></span>
+																	<input type="checkbox" name="e_options" id="e_read" value="read" class="form-check-input"> Read <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="e_options" id="e_create" value="create" class="form-check-input"> Create <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="e_options" id="e_update" value="update" class="form-check-input"> Update <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="e_options" id="e_del" value="delete" class="form-check-input"> Delete <span style="margin-right: 20px;"></span>
+																    <input type="checkbox" name="e_options" id="e_public" value="public" class="form-check-input"> Public <span style="margin-right: 20px;"></span>
 																</div>
 															</div>
 															<div class="modal-footer">
@@ -317,14 +317,14 @@
 		<script>
 			let currentPage = 1;
 			const recordsPerPage = 5;  
-			const totalRows = document.getElementById('roomTable').children.length;
+			const totalRows = document.getElementById('roleTable').children.length;
 			const totalPages = Math.ceil(totalRows / recordsPerPage);  
 		
 
 			function changePage(page) {
 				if (page < 1 || page > totalPages) return;  
 				currentPage = page;
-				const rows = document.getElementById('roomTable').children;
+				const rows = document.getElementById('roleTable').children;
 				let start = (page - 1) * recordsPerPage;
 				let end = start + recordsPerPage;
 		
@@ -374,7 +374,7 @@
             //Search
 			document.getElementById('searchInput').addEventListener('input', function() {
     		var input = this.value.toLowerCase(); 
-   			var rows = document.getElementById('roomTable').getElementsByTagName('tr'); 
+   			var rows = document.getElementById('userTable').getElementsByTagName('tr'); 
 
 
     		for (var i = 0; i < rows.length; i++) {

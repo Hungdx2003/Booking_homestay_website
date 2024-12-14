@@ -29,8 +29,6 @@
 		<meta property="og:site_name" content="Bootstrap Gallery">
 		<link rel="shortcut icon" href="<%= request.getContextPath() %>/back/assets/images/logotvx.png" />
 
-		
-
 		<!-- *************
 			************ CSS Files *************
 		************* -->
@@ -412,14 +410,14 @@
 		<script>
 			let currentPage = 1;
 			const recordsPerPage = 5;  
-			const totalRows = document.getElementById('roomTable').children.length;
+			const totalRows = document.getElementById('userTable').children.length;
 			const totalPages = Math.ceil(totalRows / recordsPerPage);  
 		
 
 			function changePage(page) {
 				if (page < 1 || page > totalPages) return;  
 				currentPage = page;
-				const rows = document.getElementById('roomTable').children;
+				const rows = document.getElementById('userTable').children;
 				let start = (page - 1) * recordsPerPage;
 				let end = start + recordsPerPage;
 		
@@ -469,7 +467,7 @@
             //Search
 			document.getElementById('searchInput').addEventListener('input', function() {
     		var input = this.value.toLowerCase(); 
-   			var rows = document.getElementById('roomTable').getElementsByTagName('tr'); 
+   			var rows = document.getElementById('userTable').getElementsByTagName('tr'); 
 
 
     		for (var i = 0; i < rows.length; i++) {

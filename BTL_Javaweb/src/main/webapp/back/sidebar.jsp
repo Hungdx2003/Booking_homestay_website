@@ -21,15 +21,18 @@
 	<div class="sidebarMenuScroll">
 		<ul class="sidebar-menu">
 			<%
-		        String currentPath = request.getRequestURI();
-				String activePage = ""; 
-		        if (currentPath.endsWith("/role.jsp")) activePage = "Quản lý quyền";
-		        else if (currentPath.endsWith("/User.jsp")) activePage = "Hồ sơ người dùng";
-		        else if (currentPath.endsWith("/dashboard.jsp")) activePage = "Thống kê";
-		        request.setAttribute("activePage", activePage);
-		        
-			    Role r=new RoleImpl();
 			    HttpSession s = request.getSession(false);
+			    if(s == null || s.getAttribute("logUser") == null){
+			    	response.sendRedirect(request.getContextPath() +"/front/Login.jsp");
+			    }else{
+			    	String currentPath = request.getRequestURI();
+					String activePage = ""; 
+			        if (currentPath.endsWith("/role.jsp")) activePage = "Quản lý quyền";
+			        else if (currentPath.endsWith("/User.jsp")) activePage = "Hồ sơ người dùng";
+			        else if (currentPath.endsWith("/dashboard.jsp")) activePage = "Thống kê";
+			        request.setAttribute("activePage", activePage);
+			      	
+				    Role r=new RoleImpl();
 				String per=(String)s.getAttribute("logUserPer");
 		    %>
 		    <% if (per.contains("read")) { %>
@@ -73,7 +76,7 @@
 			<%} %>
 			<% if (per.contains("read") && per.contains("update") && per.contains("delete") && per.contains("create")) { %>
 			<li class="<%= currentPath.endsWith("/back/role.jsp") ? "active current-page" : "" %>">
-		        <a href="<%= request.getContextPath() %>/back/role.jsp">
+		        <a href="<%= request.getContextPath() %>/back/role.jsp" name="menu_role">
 		            <i class="bi bi-person-badge"></i>
 		            <span class="menu-text" style="white-space: nowrap;">Quản lý quyền</span>
 		        </a>
@@ -92,7 +95,8 @@
 					<span class="menu-text" style="white-space: nowrap;">Thanh toán</span>
 				</a>
 			</li>
-			<%}%>
+			<%}
+				}%>
 		</ul>
 	</div>
 	<!-- Sidebar menu ends -->
