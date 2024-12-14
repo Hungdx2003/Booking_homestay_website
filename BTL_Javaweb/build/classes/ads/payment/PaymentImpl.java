@@ -5,11 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
 import ads.object.PaymentObject;
 import ads.basic.BasicImpl;
 
-public class PaymentImpl implements Payment {
+public class PaymentImpl extends BasicImpl implements Payment{
 	
 	public PaymentImpl() {
 		super("Payment");
