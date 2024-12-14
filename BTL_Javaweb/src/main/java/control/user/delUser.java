@@ -43,17 +43,18 @@ public class delUser extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String id=request.getParameter("user_id_del");
-		
-		UserObject uo=new UserObject();
-		uo.setUser_id(Integer.parseInt(id));
-		User u=new UserImpl();
-		boolean delUser=u.delUser(uo);
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out=response.getWriter();
-		if (delUser) {
-			out.print("<script>alert('Xóa người dùng thành công'); window.location.href='back/User.jsp';</script>");
-		} else {
-			out.print("<script>alert('Xóa người dùng không thành công'); window.location.href='back/User.jsp';</script>");
+		if(id!=null && !id.equalsIgnoreCase("")) {
+			UserObject uo=new UserObject();
+			uo.setUser_id(Integer.parseInt(id));
+			User u=new UserImpl();
+			boolean delUser=u.delUser(uo);
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out=response.getWriter();
+			if (delUser) {
+				out.print("<script>alert('Xóa người dùng thành công'); window.location.href='back/User.jsp';</script>");
+			} else {
+				out.print("<script>alert('Xóa người dùng không thành công'); window.location.href='back/User.jsp';</script>");
+			} 
 		}
 	}
 

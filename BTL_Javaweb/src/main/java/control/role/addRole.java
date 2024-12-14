@@ -41,24 +41,28 @@ public class addRole extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
 		Role r=new RoleImpl();
 		String name=request.getParameter("rolename");
 		String[] pers = request.getParameterValues("options");
 		String per = String.join(",", pers);
-		
-		RoleObject rl=new RoleObject();
-		rl.setRole_name(name);
-		rl.setRole_permission(per);
-		
-		boolean addResult=r.addRole(rl);
-		response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (addResult) {
-            out.println("<script>alert('Thêm quyền thành công'); window.location.href='back/role.jsp';</script>");
-        } else {
-            out.println("<script>alert('Thêm quyền thất bại'); window.location.href='back/role.jsp';</script>");
-        }
-
+		if(name!=null && !name.equalsIgnoreCase("") && per!=null && !per.equalsIgnoreCase("")) {
+			RoleObject rl=new RoleObject();
+			rl.setRole_name(name);
+			rl.setRole_permission(per);
+			
+			boolean addResult=r.addRole(rl);
+	        if (addResult) {
+	            out.println("<script>alert('Thêm quyền thành công'); window.location.href='back/role.jsp';</script>");
+	        } else {
+	            out.println("<script>alert('Thêm quyền thất bại'); window.location.href='back/role.jsp';</script>");
+	        }
+		}else {
+			out.println("<script>alert('Vui lòng điền vào các trường còn thiếu')</script>");
+		}
+		out.println("<script>window.history.back();</script>");
 	}
 
 }

@@ -40,6 +40,9 @@ public class addUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		User u=new UserImpl();
 		String username=request.getParameter("username");
 		String pass=request.getParameter("password");
@@ -48,23 +51,28 @@ public class addUser extends HttpServlet {
 		String gender=request.getParameter("gender");
 		String role=request.getParameter("role");
 		
-		UserObject uo=new UserObject();
-		uo.setUser_name(username);
-		uo.setUser_password(pass);
-		uo.setUser_email(email);
-		uo.setUser_full_name(fname);
-		uo.setUser_gender(gender);
-		uo.setUser_is_active(true);
-		uo.setRole_id(Integer.parseInt(role));
-		
-		boolean addResult=u.addUser(uo);
-		response.setContentType("text/html; charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        if (addResult) {
-            out.println("<script>alert('Thêm người dùng thành công'); window.location.href='back/User.jsp';</script>");
-        } else {
-            out.println("<script>alert('Thêm người dùng thất bại'); window.location.href='back/User.jsp';</script>");
-        }
+		if( !username.equalsIgnoreCase("") && !pass.equalsIgnoreCase("") && !email.equalsIgnoreCase("") && !fname.equalsIgnoreCase("") &&
+				!gender.equalsIgnoreCase("") && !role.equalsIgnoreCase("") && username!=null && pass!=null && email!=null
+				&& fname!=null && gender!=null && role!=null) {
+			UserObject uo=new UserObject();
+			uo.setUser_name(username);
+			uo.setUser_password(pass); 
+			uo.setUser_email(email);
+			uo.setUser_full_name(fname);
+			uo.setUser_gender(gender);
+			uo.setUser_is_active(true);
+			uo.setRole_id(Integer.parseInt(role));
+			
+			boolean addResult=u.addUser(uo);
+	        if (addResult) {
+	            out.println("<script>alert('Thêm người dùng thành công'); window.location.href='back/User.jsp';</script>");
+	        } else {
+	            out.println("<script>alert('Thêm người dùng thất bại'); window.location.href='back/User.jsp';</script>");
+	        }
+		}else {
+			out.println("<script>alert('Vui lòng điền vào các trường còn thiếu')</script>");
+		}
+		out.println("<script>window.history.back();</script>");
 	}
 
 }

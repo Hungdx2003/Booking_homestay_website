@@ -41,20 +41,23 @@ public class delRole extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		
-		int id=Integer.parseInt(request.getParameter("role_id_del"));
-		RoleObject ro=new RoleObject();
-		ro.setRole_id(id);
-		
-		Role rl=new RoleImpl();
-		boolean delResult=rl.delRole(ro);
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
-        if (delResult) {
-            out.println("<script>alert('Xóa quyền thành công'); window.location.href='back/role.jsp';</script>");
-        } else {
-            out.println("<script>alert('Xóa quyền thất bại'); window.location.href='back/role.jsp';</script>");
-        }
+		
+		String id=request.getParameter("role_id_del");
+		
+		if(id!=null && !id.equalsIgnoreCase("")) {
+			RoleObject ro=new RoleObject();
+			ro.setRole_id(Integer.parseInt(id));
+			
+			Role rl=new RoleImpl();
+			boolean delResult=rl.delRole(ro);
+	        if (delResult) {
+	            out.println("<script>alert('Xóa quyền thành công'); window.location.href='back/role.jsp';</script>");
+	        } else {
+	            out.println("<script>alert('Xóa quyền thất bại'); window.location.href='back/role.jsp';</script>");
+	        }
+		}
 	}
 
 }

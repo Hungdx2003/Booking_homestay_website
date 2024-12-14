@@ -58,7 +58,7 @@ public class login extends HttpServlet {
 		    	session.setAttribute("logUser", logUser);
 				session.setAttribute("logUserId", logUser.getInt("user_id"));
 			    ResultSet rl=r.getRole(logUser.getInt("role_id"));
-				if (rl.next() && rl.getString("role_permission").contains("public")) {
+				if (rl.next() && rl.getString("role_permission").equalsIgnoreCase("public")) {
 					response.sendRedirect(request.getContextPath() +"/front/index.jsp");
 				}else {
 					session.setAttribute("logUserPer", rl.getString("role_permission"));
