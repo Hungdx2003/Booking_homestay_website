@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.ContactObject;
+import ads.objects.ContactObject;
 import ads.contact.Contact;
 import ads.contact.ContactImpl;
 

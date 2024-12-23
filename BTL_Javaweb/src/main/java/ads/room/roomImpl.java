@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ads.basic.basicImpl;
-import ads.object.roomObject;
+import ads.basic.BasicImpl;
+import ads.objects.roomObject;
 
-public class roomImpl extends basicImpl implements room {
+public class roomImpl extends BasicImpl implements room {
 
 	public roomImpl() {
 		super("Room");
@@ -19,8 +19,8 @@ public class roomImpl extends basicImpl implements room {
 		// TODO Auto-generated method stub
 				StringBuilder sql=new StringBuilder();
 				sql.append("INSERT INTO tblroom(");
-				sql.append("room_name, room_type, room_noBeds, room_description, room_price, room_status, room_created_at,room_updated_at) ");
-				sql.append("VALUES(?,?,?,?,?,?,?,?)");
+				sql.append("room_name, room_type, room_noBeds, room_description, room_price,room_maxCapacity, room_status, room_created_at,room_updated_at) ");
+				sql.append("VALUES(?,?,?,?,?,?,?,?,?)");
 		        try {
 		            PreparedStatement pre = this.con.prepareStatement(sql.toString());
 		            pre.setString(1, item.getRoom_name());
@@ -28,9 +28,10 @@ public class roomImpl extends basicImpl implements room {
 					pre.setString(3, item.getRoom_noBeds());
 					pre.setString(4, item.getRoom_description());
 					pre.setInt(5, item.getRoom_price());
-					pre.setString(6, item.getRoom_status());
-					pre.setString(7, item.getRoom_created_at());
-					pre.setString(8, item.getRoom_updated_at());
+					pre.setInt(6, item.getRoom_maxCapacity());
+					pre.setString(7, item.getRoom_status());
+					pre.setString(8, item.getRoom_created_at());
+					pre.setString(9, item.getRoom_updated_at());
 		            return this.add(pre);  
 		        } catch (SQLException e) {
 		            e.printStackTrace();
@@ -43,7 +44,7 @@ public class roomImpl extends basicImpl implements room {
 		// TODO Auto-generated method stub
 				StringBuilder sql=new StringBuilder();
 				sql.append("UPDATE tblroom SET ");
-				sql.append("room_name = ?, room_type = ?, room_noBeds = ?, room_description = ?, room_price = ?, room_status = ?, room_created_at = ?,room_updated_at = ? ");
+				sql.append("room_name = ?, room_type = ?, room_noBeds = ?, room_description = ?, room_price = ?,room_maxCapacity = ?, room_status = ?, room_created_at = ?,room_updated_at = ? ");
 				sql.append("WHERE room_id=?");
 		        try{
 		        	PreparedStatement pre = this.con.prepareStatement(sql.toString());
@@ -52,9 +53,11 @@ public class roomImpl extends basicImpl implements room {
 					pre.setString(3, item.getRoom_noBeds());
 					pre.setString(4, item.getRoom_description());
 					pre.setInt(5, item.getRoom_price());
-					pre.setString(6, item.getRoom_status());
-					pre.setString(7, item.getRoom_created_at());
-					pre.setString(8, item.getRoom_updated_at());
+					pre.setInt(6, item.getRoom_maxCapacity());
+					pre.setString(7, item.getRoom_status());
+					pre.setString(8, item.getRoom_created_at());
+					pre.setString(9, item.getRoom_updated_at());
+					pre.setInt(10, item.getRoom_id());
 		            return this.edit(pre);
 		        } catch (SQLException e) {
 		            e.printStackTrace();

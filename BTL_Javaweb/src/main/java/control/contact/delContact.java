@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.ContactObject;
+import ads.objects.ContactObject;
 import ads.contact.Contact;
 import ads.contact.ContactImpl;
 
@@ -53,9 +53,9 @@ public class delContact extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (delResult) {
-            out.println("<script>alert('Xóa thành công'); window.location.href='back/contact.jsp';</script>");
+            out.println("<script>alert('Xóa thành công'); window.location.href='back/thuTinTuc.jsp';</script>");
         } else {
-            out.println("<script>alert('Xóa thất bại'); window.location.href='back/contact.jsp';</script>");
+            out.println("<script>alert('Xóa thất bại'); window.location.href='back/thuTinTuc.jsp';</script>");
         }
 	}
 

@@ -1,4 +1,4 @@
-package control.room;
+package control.contact;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.objects.roomObject;
-import ads.room.*;
+import ads.contact.Contact;
+import ads.contact.ContactImpl;
+import ads.objects.ContactObject;
 
 /**
- * Servlet implementation class addRoom
+ * Servlet implementation class confirmcontact
  */
-@WebServlet("/addRoom")
-public class addRoom extends HttpServlet {
+@WebServlet("/confirmcontact")
+public class confirmcontact extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addRoom() {
+    public confirmcontact() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,27 +43,20 @@ public class addRoom extends HttpServlet {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
-		room r = new roomImpl();
-		String room_name=request.getParameter("room_name");
-		String room_type=request.getParameter("room_type");
-		String room_noBeds=request.getParameter("room_noBeds");
-		//String room_status=request.getParameter("room_status");
+		Contact r=new ContactImpl();
+		int id=Integer.parseInt(request.getParameter("contact_id"));
 		
-		roomObject ro = new roomObject();
-		ro.setRoom_name(room_name);
-		ro.setRoom_type(room_type);
-		ro.setRoom_noBeds(room_noBeds);
-		//ro.setRoom_description("");)
-		ro.setRoom_status("Còn trống");
-		ro.setRoom_maxCapacity(4);
+		ContactObject rl=new ContactObject();
+		rl.setStatus("Cho phép");
+		rl.setContact_id(id);
 		
-		boolean addResult = r.addRoom(ro);
+		boolean editResult=r.editContact(rl);
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-        if (addResult) {
-            out.println("<script>alert('Thêm phòng thành công'); window.location.href='back/QLPhong.jsp';</script>");
+        PrintWriter out = response.getWriter();
+        if (editResult) {
+            out.println("<script>alert('Xác nhận thành công'); window.location.href='back/thuTinTuc.jsp';</script>");
         } else {
-            out.println("<script>alert('Thêm phòng thất bại'); window.location.href='back/QLPhong.jsp';</script>");
+            out.println("<script>alert('Xác nhận thất bại'); window.location.href='back/thuTinTuc.jsp';</script>");
         }
 	}
 

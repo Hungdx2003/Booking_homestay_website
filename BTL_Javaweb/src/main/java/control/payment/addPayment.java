@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.PaymentObject;
+import ads.objects.PaymentObject;
 import ads.payment.Payment;
 import ads.payment.PaymentImpl;
 
@@ -46,24 +46,20 @@ public class addPayment extends HttpServlet {
 		Payment r=new PaymentImpl();
 		String date=request.getParameter("pay_date");
 		int amount=Integer.parseInt(request.getParameter("amount"));
-		String method=request.getParameter("pay_method");
-		String notes=request.getParameter("notes");
-		String status=request.getParameter("status");
 		
 		PaymentObject rl=new PaymentObject();
 		rl.setPay_date(date);
 		rl.setAmount(amount);
-		rl.setPay_method(method);
-		rl.setNotes(notes);
-		rl.setStatus(status);
+		rl.setPay_method("Tiền mặt");
+		rl.setStatus("Đã thanh toán");
 		
 		boolean addResult=r.addPayment(rl);
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (addResult) {
-            out.println("<script>alert('Thêm thành công'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Thanh toán thành công'); window.location.href='back/payment.jsp';</script>");
         } else {
-            out.println("<script>alert('Thêm thất bại'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Thanh toán thất bại'); window.location.href='back/payment.jsp';</script>");
         }
 	}
 

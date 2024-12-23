@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.PaymentObject;
+import ads.objects.PaymentObject;
 import ads.payment.Payment;
 import ads.payment.PaymentImpl;
 
@@ -44,30 +44,22 @@ public class editPayment extends HttpServlet {
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		Payment r=new PaymentImpl();
-		int id=Integer.parseInt(request.getParameter("payment_id"));
-		int booking_id=Integer.parseInt(request.getParameter("booking_id"));
-		String date=request.getParameter("pay_date");
 		int amount=Integer.parseInt(request.getParameter("amount"));
-		String method=request.getParameter("pay_method");
-		String notes=request.getParameter("notes");
-		String status=request.getParameter("status");
-		
+		int id=Integer.parseInt(request.getParameter("pay_id"));
+
 		PaymentObject rl=new PaymentObject();
-		rl.setBooking_id(booking_id);
-		rl.setPay_date(date);
-		rl.setAmount(amount);
-		rl.setPay_method(method);
-		rl.setNotes(notes);
-		rl.setStatus(status);
 		rl.setPayment_id(id);
+		rl.setAmount(amount);
+		rl.setPay_method("Tiền mặt");
+		rl.setStatus("Đã thanh toán");
 		
 		boolean editResult=r.editPayment(rl);
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (editResult) {
-            out.println("<script>alert('Sửa thông tin thành công'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Thanh toán thành công'); window.location.href='back/phongTra.jsp';</script>");
         } else {
-            out.println("<script>alert('Sửa thông tin thất bại'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Thanh toán thất bại'); window.location.href='back/pphongTra.jsp';</script>");
         }
 	}
 

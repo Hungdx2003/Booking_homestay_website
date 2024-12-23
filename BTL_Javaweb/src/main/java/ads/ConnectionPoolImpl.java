@@ -37,7 +37,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
 	@Override
 	public Connection getConnection(String objectName) throws SQLException {
 		if(this.pool.isEmpty()) {
-			System.out.println(objectName+" đã tạo ra một kết nối mới");
+			//System.out.println(objectName+" đã tạo ra một kết nối mới");
 			return DriverManager.getConnection(this.url,this.username,this.password);
 		}else {
 			//Lay ket noi da duoc lu tru
@@ -49,7 +49,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
 	@Override
 	public void releaseConnection(Connection con, String objectName) throws SQLException {
 		// TODO Auto-generated method stub
-		System.out.println(objectName+" đã trả về kết nối");
+		//System.out.println(objectName+" đã trả về kết nối");
 		this.pool.push(con);
 	}
 	

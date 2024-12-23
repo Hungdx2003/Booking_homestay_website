@@ -1,4 +1,4 @@
-package ads.object;
+package ads.objects;
 import lombok.Data;
 @Data
 
@@ -9,6 +9,7 @@ public class roomObject {
 	private String room_noBeds;
 	private String room_description;
 	private int room_price;
+	private int room_maxCapacity;
 	private String room_status;
 	private String room_created_at;
 	private String room_updated_at;

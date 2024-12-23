@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.ContactObject;
+import ads.objects.ContactObject;
 import ads.contact.Contact;
 import ads.contact.ContactImpl;
 
@@ -44,9 +44,9 @@ public class addContact extends HttpServlet {
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		Contact r=new ContactImpl();
-		String name=request.getParameter("contactname");
-		String phone=request.getParameter("contactphone");
-		String email=request.getParameter("contactemail");
+		String name=request.getParameter("name");
+		String phone=request.getParameter("phone");
+		String email=request.getParameter("email");
 		
 		ContactObject rl=new ContactObject();
 		rl.setFull_name(name);
@@ -57,9 +57,9 @@ public class addContact extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (addResult) {
-            out.println("<script>alert('Thêm thành công'); window.location.href='back/contact.jsp';</script>");
+            out.println("<script>alert('Thêm thành công'); window.location.href='front/index.jsp';</script>");
         } else {
-            out.println("<script>alert('Thêm thất bại'); window.location.href='back/contact.jsp';</script>");
+            out.println("<script>alert('Thêm thất bại'); window.location.href='front/index.jsp';</script>");
         }
 	}
 

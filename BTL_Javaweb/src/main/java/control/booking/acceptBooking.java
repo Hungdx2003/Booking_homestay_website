@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import ads.booking.booking;
 import ads.booking.bookingImpl;
-import ads.object.bookingObject;
+import ads.objects.PaymentObject;
+import ads.objects.bookingObject;
+import ads.payment.Payment;
+import ads.payment.PaymentImpl;
 
 /**
  * Servlet implementation class acceptBooking
@@ -50,8 +53,16 @@ public class acceptBooking extends HttpServlet {
 		bookingObject bo = new bookingObject();
 		bo.setBooking_id(Integer.parseInt(booking_id));
 		bo.setBooking_status("Đã xác nhận");
+		bo.setRoom_status("Đang sử dụng");
 		
 		boolean editResult = r.editBooking(bo);
+		
+		Payment p=new PaymentImpl();
+		PaymentObject po=new PaymentObject();
+		po.setBooking_id(Integer.parseInt(booking_id));
+		po.setStatus("Chưa thanh toán");
+		boolean result=p.addPayment(po);
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
         if (editResult) {

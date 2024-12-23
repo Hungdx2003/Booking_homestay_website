@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.PaymentObject;
+import ads.objects.PaymentObject;
 import ads.payment.Payment;
 import ads.payment.PaymentImpl;
 
@@ -53,9 +53,9 @@ public class delPayment extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
         PrintWriter out = response.getWriter();
         if (delResult) {
-            out.println("<script>alert('Xóa quyền thành công'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Xóa thành công'); window.location.href='back/payment.jsp';</script>");
         } else {
-            out.println("<script>alert('Xóa quyền thất bại'); window.location.href='back/payment.jsp';</script>");
+            out.println("<script>alert('Xóa thất bại'); window.location.href='back/payment.jsp';</script>");
         }
 	}
 

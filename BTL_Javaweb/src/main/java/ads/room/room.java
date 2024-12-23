@@ -3,7 +3,7 @@ package ads.room;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import ads.object.roomObject;
+import ads.objects.roomObject;
 
 public interface room {
 	boolean addRoom(roomObject item);

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.bookingObject;
+import ads.objects.bookingObject;
 import ads.booking.*;
 
 /**
@@ -43,12 +43,13 @@ public class actionBooking extends HttpServlet {
 		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
 		booking r = new bookingImpl();
-		//String booking_id = request.getParameter("booking_id");
+		String booking_id = request.getParameter("booking_id");
 		String check_in_date=request.getParameter("check_in_date");
 		String booking_notes=request.getParameter("booking_notes");
 		String booking_status=request.getParameter("booking_status");
 		
 		bookingObject bo = new bookingObject();
+		bo.setBooking_id(Integer.parseInt(booking_id));
 		bo.setCheck_in_date(check_in_date);
 		bo.setBooking_notes(booking_notes);
 		bo.setBooking_status(booking_status);

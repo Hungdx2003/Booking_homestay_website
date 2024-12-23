@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import ads.basic.BasicImpl;
-import ads.object.ContactObject;
+import ads.basic.*;
+import ads.objects.*;
 
-public class ContactImpl implements Contact {
+public class ContactImpl extends BasicImpl implements Contact{
 	
 	public ContactImpl() {
 		super("Contact");
@@ -19,17 +19,15 @@ public class ContactImpl implements Contact {
 		// TODO Auto-generated method stub
 		StringBuilder sql=new StringBuilder();
 		sql.append("INSERT INTO tblContact(");
-		sql.append("contact_id, full_name, phone, email, contact_date, response_by, status) ");
-		sql.append("VALUES(?,?,?,?,?,?,?)");
+		sql.append("full_name, phone, email, response_by, status) ");
+		sql.append("VALUES(?,?,?,?,?)");
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
-            pre.setInt(1, item.getContact_id());
-			pre.setString(2, item.getFull_name());
-			pre.setString(3, item.getPhone());
-			pre.setString(4, item.getEmail());
-			pre.setString(5, item.getContact_date());
-			pre.setString(6, item.getResponse_by());
-			pre.setString(7, item.getStatus());
+			pre.setString(1, item.getFull_name());
+			pre.setString(2, item.getPhone());
+			pre.setString(3, item.getEmail());
+			pre.setString(4, item.getResponse_by());
+			pre.setString(5, item.getStatus());
             return this.add(pre);  
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,17 +40,12 @@ public class ContactImpl implements Contact {
 		// TODO Auto-generated method stub
 		StringBuilder sql=new StringBuilder();
 		sql.append("UPDATE tblContact SET ");
-		sql.append("contact_id = ?, full_name = ?, phone  = ?, email  = ?, contact_date  = ?, response_by  = ?, status  = ?) ");
-		sql.append("WHERE room_id=?");
+		sql.append("status  = ? ");
+		sql.append("WHERE contact_id=?");
         try{
         	PreparedStatement pre = this.con.prepareStatement(sql.toString());
-        	pre.setInt(1, item.getContact_id());
-			pre.setString(2, item.getFull_name());
-			pre.setString(3, item.getPhone());
-			pre.setString(4, item.getEmail());
-			pre.setString(5, item.getContact_date());
-			pre.setString(6, item.getResponse_by());
-			pre.setString(7, item.getStatus());
+			pre.setString(1, item.getStatus());
+			pre.setInt(2, item.getContact_id());
             return this.edit(pre);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,16 +94,4 @@ public class ContactImpl implements Contact {
 		return this.gets(sql.toString());
 	}
 
-	@Override
-	public ResultSet getContact(int id) {
-		// TODO Auto-generated method stub
-		String sql="SELECT * FROM tblContact WHERE Contact_id=?";
-		return this.get(sql, id);
-	}
-
-	@Override
-	public ResultSet getContact(String Contactname, String Contactpass) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

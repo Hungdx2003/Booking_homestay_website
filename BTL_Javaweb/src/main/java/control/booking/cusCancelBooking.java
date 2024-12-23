@@ -1,4 +1,4 @@
-package control.room;
+package control.booking;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.objects.roomObject;
-import ads.room.*;
+import ads.booking.booking;
+import ads.booking.bookingImpl;
+import ads.objects.bookingObject;
 
 /**
- * Servlet implementation class addRoom
+ * Servlet implementation class cusCancelBooking
  */
-@WebServlet("/addRoom")
-public class addRoom extends HttpServlet {
+@WebServlet("/cusCancelBooking")
+public class cusCancelBooking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public addRoom() {
+    public cusCancelBooking() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,29 +41,23 @@ public class addRoom extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);
 		request.setCharacterEncoding("UTF-8");
-		room r = new roomImpl();
-		String room_name=request.getParameter("room_name");
-		String room_type=request.getParameter("room_type");
-		String room_noBeds=request.getParameter("room_noBeds");
-		//String room_status=request.getParameter("room_status");
+		booking r = new bookingImpl();
+		String booking_id = request.getParameter("cancelBooking_id");
+		String reason = request.getParameter("deleteReason");
 		
-		roomObject ro = new roomObject();
-		ro.setRoom_name(room_name);
-		ro.setRoom_type(room_type);
-		ro.setRoom_noBeds(room_noBeds);
-		//ro.setRoom_description("");)
-		ro.setRoom_status("Còn trống");
-		ro.setRoom_maxCapacity(4);
+		bookingObject bo = new bookingObject();
+		bo.setBooking_id(Integer.parseInt(booking_id));
+		bo.setReason_cancel(reason);
+		bo.setBooking_status("Đã huỷ");
 		
-		boolean addResult = r.addRoom(ro);
+		boolean editResult = r.editBooking(bo);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-        if (addResult) {
-            out.println("<script>alert('Thêm phòng thành công'); window.location.href='back/QLPhong.jsp';</script>");
+        if (editResult) {
+            out.println("<script>alert('Hủy đặt phòng thành công'); window.location.href='front/check.jsp';</script>");
         } else {
-            out.println("<script>alert('Thêm phòng thất bại'); window.location.href='back/QLPhong.jsp';</script>");
+            out.println("<script>alert('Huỷ đặt phòng thất bại'); window.location.href='front/check.jsp';</script>");
         }
 	}
 

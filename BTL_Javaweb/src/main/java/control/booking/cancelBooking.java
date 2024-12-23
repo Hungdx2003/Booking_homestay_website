@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ads.booking.booking;
 import ads.booking.bookingImpl;
-import ads.object.bookingObject;
+import ads.objects.bookingObject;
 
 /**
  * Servlet implementation class cancelBooking
@@ -56,7 +56,7 @@ public class cancelBooking extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
         if (editResult) {
-            out.println("<script>alert('Đơn đặt phòng đã bị từ chối'); window.location.href='back/QLDonDat.jsp';</script>");
+            out.println("<script>alert('Hủy đặt phòng thành công'); window.location.href='back/QLDonDat.jsp';</script>");
         } else {
             out.println("<script>alert('Huỷ đặt phòng thất bại'); window.location.href='back/QLDonDat.jsp';</script>");
         }

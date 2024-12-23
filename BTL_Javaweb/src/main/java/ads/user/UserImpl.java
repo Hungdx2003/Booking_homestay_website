@@ -21,8 +21,8 @@ public class UserImpl extends BasicImpl implements User {
 		sql.append("user_name, user_password, user_full_name, ");
 		sql.append("user_gender, user_birthday, user_id_number, user_email, ");
 		sql.append("user_phone_number, user_nationality, user_address, role_id, ");
-		sql.append("user_is_active, user_created_at, user_updated_at)");
-		sql.append("VALUES(?,md5(?),?,?,?,?,?,?,?,?,?,?,?,?)");
+		sql.append("user_is_active)");
+		sql.append("VALUES(?,md5(?),?,?,?,?,?,?,?,?,?,?)");
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
             pre.setString(1, item.getUser_name());
@@ -37,8 +37,6 @@ public class UserImpl extends BasicImpl implements User {
 			pre.setString(10, item.getUser_address());
 			pre.setInt(11, item.getRole_id());
 			pre.setBoolean(12, item.getUser_is_active());
-			pre.setString(13, item.getUser_created_at());
-			pre.setString(14, item.getUser_updated_at());
             return this.add(pre);  
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,7 +52,7 @@ public class UserImpl extends BasicImpl implements User {
 		sql.append("user_password=md5(?), user_full_name=?, ");
 		sql.append("user_gender=?, user_birthday=?, user_id_number=?, user_email=?, ");
 		sql.append("user_phone_number=?, user_nationality=?, user_address=?, role_id=?, ");
-		sql.append("user_is_active=?, user_created_at=?, user_updated_at=? ");
+		sql.append("user_is_active=? ");
 		sql.append("WHERE user_id=?");
 		try{
         	PreparedStatement pre = this.con.prepareStatement(sql.toString());
@@ -69,9 +67,7 @@ public class UserImpl extends BasicImpl implements User {
 			pre.setString(9, item.getUser_address());
 			pre.setInt(10, item.getRole_id());
 			pre.setBoolean(11, item.getUser_is_active());
-			pre.setString(12, item.getUser_created_at());
-			pre.setString(13, item.getUser_updated_at());
-			pre.setInt(14, item.getUser_id());
+			pre.setInt(12, item.getUser_id());
             return this.edit(pre);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -91,6 +87,68 @@ public class UserImpl extends BasicImpl implements User {
             e.printStackTrace();
         }
         return false;
+	}
+
+	@Override
+	public String getCountOfGender(UserObject item) {
+		StringBuilder message = new StringBuilder();
+
+	    String sql = "SELECT user_gender, COUNT(*) AS count FROM tbluser GROUP BY user_gender";
+	    try {
+	        PreparedStatement pre = this.con.prepareStatement(sql);
+	        ResultSet rs = pre.executeQuery();
+	        message.append("[");
+	        boolean first = true;
+	        while (rs.next()) {
+	            if (!first) {
+	                message.append(",");
+	            }
+	            String gender = rs.getString("user_gender");
+	            int count = rs.getInt("count");
+	            message.append("{");
+	            message.append("\"gender\": \"").append(gender).append("\",");
+	            message.append("\"count\": ").append(count);
+	            message.append("}");
+	            first = false;
+	        }
+	        message.append("]");
+	        rs.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return message.toString();
+	}
+	
+	@Override
+	public String getCountOfAgeGroup(UserObject item) {
+	    StringBuilder message = new StringBuilder();
+
+	    String sql = "SELECT "
+	            + "SUM(CASE WHEN TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) BETWEEN 18 AND 30 THEN 1 ELSE 0 END) AS age_group_18_30, "
+	            + "SUM(CASE WHEN TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) BETWEEN 31 AND 50 THEN 1 ELSE 0 END) AS age_group_31_50, "
+	            + "SUM(CASE WHEN TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) BETWEEN 50 AND 65 THEN 1 ELSE 0 END) AS age_group_50_65, "
+	            + "SUM(CASE WHEN TIMESTAMPDIFF(YEAR, user_birthday, CURDATE()) > 65 THEN 1 ELSE 0 END) AS age_group_over_65 "
+	            + "FROM tbluser";
+
+	    try {
+	        PreparedStatement pre = this.con.prepareStatement(sql);
+	        ResultSet rs = pre.executeQuery();
+
+	        message.append("[");
+	        if (rs.next()) {
+	            message.append("{age_group: '11-30', count: ").append(rs.getInt("age_group_18_30")).append("},");
+	            message.append("{age_group: '31-50', count: ").append(rs.getInt("age_group_31_50")).append("},");
+	            message.append("{age_group: '50-65', count: ").append(rs.getInt("age_group_50_65")).append("},");
+	            message.append("{age_group: 'Over 65', count: ").append(rs.getInt("age_group_over_65")).append("}");
+	        }
+	        message.append("]");
+
+	        rs.close(); // Đóng ResultSet sau khi sử dụng
+	        pre.close(); // Đóng PreparedStatement
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return message.toString();
 	}
 
 	@Override
@@ -115,31 +173,32 @@ public class UserImpl extends BasicImpl implements User {
 	@Override
 	public ResultSet getUser(String username, String userpass) {
 		// TODO Auto-generated method stub
-		String sql="SELECT * FROM tbluser WHERE (user_name=?) AND (user_pass=?)";
+		String sql="SELECT * FROM tbluser WHERE (user_name=?) AND (user_password=md5(?))";
 		return this.get(sql, username, userpass);
 	}
 	
 	public static void main(String[] args) {
 		User u=new UserImpl();
 		
-		UserObject nItem=new UserObject();
-		nItem.setUser_name("java");
-		nItem.setUser_email("hungdx@haui.edu.vn");
-		nItem.setUser_full_name("Dinh Xuan Hung Java");
-		nItem.setUser_password("12345");
-		nItem.setUser_is_active(true);
-		nItem.setUser_id_number("01568813551");
-		nItem.setRole_id(2);
-		nItem.setUser_id(92);
+//		UserObject nItem=new UserObject();
+//		nItem.setUser_name("java");
+//		nItem.setUser_email("hungdx@haui.edu.vn");
+//		nItem.setUser_full_name("Dinh Xuan Hung");
+//		nItem.setUser_password("12345");
+//		nItem.setUser_is_active(true);
+//		nItem.setUser_id_number("01568813551");
+//		nItem.setRole_id(2);
+//		nItem.setUser_id(96);
         
 //        boolean isAdded = u.addUser( nItem);
 //        System.out.println(isAdded ? "User added successfully." : "Failed to add user.");
+//        
         
 //        boolean isEdited = u.editUser(nItem);
 //        System.out.println(isEdited ? "User edited successfully." : "Failed to edit user.");
   
-        boolean isDeleted = u.delUser(nItem);
-        System.out.println(isDeleted ? "User deleted successfully." : "Failed to delete user.");
+//        boolean isDeleted = u.delUser(nItem);
+//        System.out.println(isDeleted ? "User deleted successfully." : "Failed to delete user.");
         
 		ArrayList<ResultSet> res=u.getUser(null, 0, (byte)15);
 		

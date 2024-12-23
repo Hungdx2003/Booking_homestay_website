@@ -10,8 +10,10 @@ public interface User {
 	boolean editUser(UserObject item);
 	boolean delUser(UserObject item);
 	
+	public String getCountOfGender(UserObject item);
+	public String getCountOfAgeGroup(UserObject item);
+	
 	ArrayList<ResultSet> getUser(UserObject similar, int at, byte total);
 	ResultSet getUser(int id);
 	ResultSet getUser(String username, String userpass);
-	
 }

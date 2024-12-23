@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ads.object.roomObject;
+import ads.objects.roomObject;
 import ads.room.room;
 import ads.room.roomImpl;
 

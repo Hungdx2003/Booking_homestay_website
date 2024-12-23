@@ -16,15 +16,14 @@ public class RoleImpl extends BasicImpl implements Role {
 		// TODO Auto-generated method stub
 		StringBuilder sql=new StringBuilder();
 		sql.append("INSERT INTO tblrole(");
-		sql.append("role_name, role_description, create_by, role_created_at, role_updated_at) ");
-		sql.append("VALUES(?,?,?,?,?)");
+		sql.append("role_name, role_description, role_permission, create_by) ");
+		sql.append("VALUES(?,?,?,?)");
         try {
             PreparedStatement pre = this.con.prepareStatement(sql.toString());
             pre.setString(1, item.getRole_name());
 			pre.setString(2, item.getRole_description());
-			pre.setInt(3, item.getCreate_by());
-			pre.setString(4, item.getRole_created_at());
-			pre.setString(5, item.getRole_updated_at());
+			pre.setString(3, item.getRole_permission());
+			pre.setInt(4, item.getCreate_by());
             return this.add(pre);  
         } catch (SQLException e) {
             e.printStackTrace();
@@ -37,16 +36,15 @@ public class RoleImpl extends BasicImpl implements Role {
 		// TODO Auto-generated method stub
 		StringBuilder sql=new StringBuilder();
 		sql.append("UPDATE tblrole SET ");
-		sql.append("role_name=?, role_description=?, create_by=?, role_created_at=?, role_updated_at=? ");
+		sql.append("role_name=?, role_description=?, role_permission=?, create_by=? ");
 		sql.append("WHERE role_id=?");
 		try{
         	PreparedStatement pre = this.con.prepareStatement(sql.toString());
         	pre.setString(1, item.getRole_name());
 			pre.setString(2, item.getRole_description());
-			pre.setInt(3, item.getCreate_by());
-			pre.setString(4, item.getRole_created_at());
-			pre.setString(5, item.getRole_updated_at());
-			pre.setInt(6, item.getRole_id());
+			pre.setString(3, item.getRole_permission());
+			pre.setInt(4, item.getCreate_by());
+			pre.setInt(5, item.getRole_id()); 
             return this.edit(pre);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -74,7 +72,7 @@ public class RoleImpl extends BasicImpl implements Role {
 		StringBuilder sql= new StringBuilder();
 		sql.append("SELECT * FROM tblrole ");
 		sql.append("");
-		sql.append("ORDER BY user_id DESC ");
+		sql.append("ORDER BY role_id DESC ");
 		sql.append("LIMIT ").append(at).append(", ").append(total).append(";");
 		
 		return this.gets(sql.toString());
@@ -86,4 +84,5 @@ public class RoleImpl extends BasicImpl implements Role {
 		String sql="SELECT * FROM tblrole WHERE role_id=?";
 		return this.get(sql, id);
 	}
+	
 }

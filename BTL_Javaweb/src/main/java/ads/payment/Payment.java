@@ -1,10 +1,8 @@
 package ads.payment;
+import java.sql.*;
+import java.util.*;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
-
-import ads.object.PaymentObject;
-
+import ads.objects.*;
 public interface Payment {
 	boolean addPayment(PaymentObject item);
 	boolean editPayment(PaymentObject item);
@@ -15,3 +13,4 @@ public interface Payment {
 	ResultSet getPayment(int id);
 	ResultSet getPayment(String Paymentname, String Paymentpass);
 }
+
