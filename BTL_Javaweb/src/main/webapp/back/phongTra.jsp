@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="ads.objects.*" %>
-<%@page import="ads.room.*" %>
-<%@page import="ads.booking.*" %>
+    <%@page import="ads.objects.*" %>
+<%@page import="ads.payment.*" %>
 <%@page import="java.util.*" %>
 <%@page import="java.sql.*" %>
 <%
-	booking bk =new bookingImpl();	
+	Payment u=new PaymentImpl();	
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,14 +32,9 @@
 		<link rel="stylesheet" href="assets/fonts/bootstrap/bootstrap-icons.css" />
 		<link rel="stylesheet" href="assets/css/main.min.css" />
 		<link rel="stylesheet" href="assets/css/customize.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<!-- *************
 			************ Vendor Css Files *************
 		************ -->
-
-		<!-- jquery -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		
 
 		<!-- Scrollbar CSS -->
 		<link rel="stylesheet" href="assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
@@ -48,11 +42,6 @@
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="assets/vendor/daterange/daterange.css" />
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-		<script>
-		 function passIdToModal(id) { 
-			    window.location.href = "xemChiTiet.jsp?booking_id=" + id;
-	        }
-		</script>
 	</head>
 
 	<body>
@@ -62,16 +51,15 @@
 			<!-- Main container start -->
 			<div class="main-container">
 
+				<!-- Sidebar wrapper start -->
 				<jsp:include page="/back/sidebar.jsp"></jsp:include>
+				<!-- Sidebar wrapper end -->
 
 				<!-- App container starts -->
 				<div class="app-container">
 
 					<!-- App header starts -->
 					<jsp:include page="/back/header.jsp"></jsp:include>
-					<!-- App header actions end -->
-
-					</div>
 					<!-- App header ends -->
 
 					<!-- App body starts -->
@@ -86,18 +74,7 @@
                         }
                     </style>
 					<div class="app-body">
-						<div class="card-header ngang mb-0">
-                            <ul class="nav nav-pills text-uppercase">
-                                <li class="nav-item">
-                                  <a class="nav-link active" href="trangThai.html">Danh sách</a>
-                                </li>
-								<!-- <li class="nav-item">
-									<a class="nav-link" href="xemChiTiet.html">Thông tin phòng? Đăng ký phòng</a>
-								  </li> -->
-                               
-                              </ul>
-                        </div>
-						<hr class="mt-0">
+						
 						<!-- Container starts -->
 						<div class="container-fluid">
 
@@ -106,17 +83,17 @@
 								<div class="col-12">
 									<div class="card mb-3">
 										<div class="card-header ngang" >
-											<h4 class="card-title">Trạng thái</h4>
+											<h4 class="card-title">Danh sách thanh toán</h4>
 										</div>
 										
 										<div class="card-body">
 											<div class="row gx-3">
 												<div class="col-lg-3 col-sm-3 col-12">
 													<div class="mb-3">
-														<label class="form-label">Tìm kiếm KH</label>
+														<label class="form-label">Tìm kiếm hoá đơn</label>
 														
 														<input type="text" class="form-control" id="searchInput" required=""  
-														placeholder="Tìm kiếm theo ID, tên khách hàng" value=""/>
+														placeholder="Tìm kiếm theo ID, tên" value=""/>
 														
 													</div>
 												</div>
@@ -130,44 +107,43 @@
 														</button>
 													</div>
 												</div>
-												</div>
+											</div>
 												
 											
 													<table id="Table" class="table align-middle table-striped table-hover m-0 border rounded-3 mt-4">
 														<thead>
 															<tr>
-																<th>Số</th>
-																<th>Ngày đặt</th>
-																<th>Họ và tên</th>
-                                                                <th>Giới tính</th>
-																<th>Địa chỉ</th>
-																<th>CMND</th>
-																<th>Loại phòng</th>
+																<th></th>
+																<th>Mã thanh toán</th>
+																<th>Tên khách hàng</th>
+																<th>Ngày thanh toán</th>
+                                                                <th>Số tiền thanh toán</th>
 																<th>Trạng thái</th>
+																<th>Thao tác</th>
 															</tr>
 														</thead>
-														<tbody id="bookingTable">
-														<% ArrayList<ResultSet> bs = bk.getEBooking(null,0,(byte)15);
-																ResultSet b = bs.get(0);
+														<tbody id="invoiceTable">
+														<% ArrayList<ResultSet> rs =u.getPayment(null, 0, (byte)15);
+															
+																ResultSet r=rs.get(0);
 																try {
-																	while(b.next()) {	
-														%>
+																	while(r.next()) {	
+															%>
 															<tr>
-																<td class="id"><%=b.getInt("booking_id")%></td>
-																<td><%=b.getString("check_in_date")%></td>
-																<td class="name"><%=b.getString("user_full_name")%></td>
-																<td><%=b.getString("user_gender")%></td>
+																<th>
+																	<input class="form-check-input" type="checkbox" value="option1" />
+																</th>
+																<td class="id"><%=r.getInt("payment_id") %></td>
+																<td class="name"><%=r.getString("user_full_name") %></td>
+																<td><%=r.getString("pay_date") %></td>
+																<td><%=r.getInt("amount") %></td>
+																<td><%=r.getString("status") %></td>
 																<td>
-																	<%=b.getString("user_address")%>
-																</td>
-																<td>
-                                                                    <%=b.getString("user_id_number")%>
-                                                                </td>
-                                                                <td><%=b.getString("room_type")%></td>
-																<td><%=b.getString("booking_status")%></td>
-																<td>
-                                                                    <a type="button" class="btn btn-primary" onclick="passIdToModal('<%= b.getInt("booking_id") %>')" >Action</a>
-																	
+																	<a href="<%=request.getContextPath()%>/back/chiTietHoaDon.jsp?pay_id=<%=r.getInt("payment_id")%>"
+																		type="button" class="btn btn-success"
+																		style="display: inline-flex; align-items: center;">
+																		<i class="bi bi-eye" style="font-size: 16px; margin-right: 5px;"></i> View
+																	</a>
 																</td>
 															</tr>
 															<%
@@ -179,7 +155,8 @@
 															%>
 														</tbody>
 													</table>
-											
+										
+										</div>
 									</div>
 								</div>
 							</div>
@@ -239,28 +216,27 @@
 			  lengthChange: false,     
 			  pageLength: 5            
 			});
-			
 			document.getElementById('searchInput').addEventListener('input', function() {
-	    		var input = this.value.toLowerCase(); 
-	   			var rows = document.getElementById('bookingTable').getElementsByTagName('tr'); 
+    		var input = this.value.toLowerCase(); 
+   			var rows = document.getElementById('invoiceTable').getElementsByTagName('tr'); 
 
 
-	    		for (var i = 0; i < rows.length; i++) {
-	        	var idCell = rows[i].getElementsByClassName('id')[0];
-	        	var nameCell = rows[i].getElementsByClassName('name')[0]; 
+    		for (var i = 0; i < rows.length; i++) {
+        	var idCell = rows[i].getElementsByClassName('id')[0];
+        	var nameCell = rows[i].getElementsByClassName('name')[0]; 
 
-	 
-	        	if (idCell && nameCell) {
-	            	var idText = idCell.textContent.toLowerCase(); 
-	            	var nameText = nameCell.textContent.toLowerCase();     
-	            	if (idText.includes(input) || nameText.includes(input)) {
-	                	rows[i].style.display = ''; 
-	            		} else {
-	                			rows[i].style.display = 'none'; 
-	            			}
-	        			}
-	    			}
-				});
+ 
+        	if (idCell && nameCell) {
+            	var idText = idCell.textContent.toLowerCase(); 
+            	var nameText = nameCell.textContent.toLowerCase();     
+            	if (idText.includes(input) || nameText.includes(input)) {
+                	rows[i].style.display = ''; 
+            		} else {
+                			rows[i].style.display = 'none'; 
+            			}
+        			}
+    			}
+			});
 		</script>
 	</body>
 

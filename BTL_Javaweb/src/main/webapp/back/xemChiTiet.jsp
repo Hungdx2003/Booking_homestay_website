@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="ads.object.*" %>
+<%@page import="ads.objects .*" %>
 <%@page import="ads.room.*" %>
 <%@page import="ads.booking.*" %>
 <%@page import="java.util.*" %>
@@ -53,187 +53,14 @@
 			<!-- Main container start -->
 			<div class="main-container">
 
-				<!-- Sidebar wrapper start -->
-				<nav id="sidebar" class="sidebar-wrapper">
-
-					<!-- App brand starts -->
-					<div class="app-brand px-3 py-2 d-flex align-items-center">
-						<a href="index.html" class="brand-link">
-							<img src="assets/images/logo.png" alt="Bootstrap Gallery"  class="brand-image img-circle elevation-3" style="opacity: .8;"/>
-							<span class="brand-text font-weight-light" style="color: rgb(26, 97, 169); font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> EASY STAY</span>
-						</a>
-					</div>
-					<!-- App brand ends -->
-
-					<!-- Sidebar menu starts -->
-					<div class="sidebarMenuScroll">
-						<ul class="sidebar-menu">
-							<li class="active current-page">
-								<a href="trangThai.html">
-									<i class="bi bi-pen"></i>
-									<span class="menu-text" style="white-space: nowrap;">Trạng thái</span>
-								</a>
-							</li>
-							<!-- <li>
-								<a href="henDat.html">
-									<i class="bi bi-journal-text"></i>
-									<span class="menu-text" style="white-space: nowrap;">Danh sách hẹn đặt phòng</span>
-								</a>
-							</li> -->
-							<li>
-								<a href="thuTinTuc.html">
-									<i class="bi bi-newspaper"></i>
-									<span class="menu-text" style="white-space: nowrap;">Thư tin tức</span>
-								</a>
-							</li>
-							<li>
-								<a href="quanLyPhong.html">
-									<i class="bi bi-clipboard-plus"></i>
-									<span class="menu-text" style="white-space: nowrap;">Quản lý phòng</span>
-								</a>
-							</li>
-							<li>
-								<a href="phongBook.html">
-									<i class="bi bi-postcard-heart"></i>
-									<span class="menu-text" style="white-space: nowrap;">Danh sách phòng đang đặt</span>
-									
-								</a>
-							</li>
-							<li>
-								<a href="quyen.html">
-									<i class="bi bi-person-badge"></i>
-									<span class="menu-text" style="white-space: nowrap;">Quản lý quyền</span>
-								</a>
-							</li>
-							<li>
-								<a href="admin.html">
-									<i class="bi bi-journal-text"></i>
-									<span class="menu-text" style="white-space: nowrap;">Hồ sơ người dùng</span>
-								</a>
-							</li>
-							<li>
-								<a href="phongTra.html">
-									<i class="bi bi-card-checklist"></i>
-									<span class="menu-text" style="white-space: nowrap;">Thanh toán</span>
-								</a>
-							</li>
-							
-							<li>
-								<a href="DanhSach.html">
-									<i class="bi bi-wallet2"></i>
-									<span class="menu-text" style="white-space: nowrap;">Thống kê</span>
-								</a>
-							</li>
-						</ul>
-					</div>
-					<!-- Sidebar menu ends -->
-
-				</nav>
+				<jsp:include page="/back/sidebar.jsp"></jsp:include>
 				<!-- Sidebar wrapper end -->
 
 				<!-- App container starts -->
 				<div class="app-container">
 
 					<!-- App header starts -->
-					<div class="app-header d-flex align-items-center">
-
-						<!-- Toggle buttons start -->
-						<div class="d-flex">
-							<button class="btn btn-outline-primary me-2 toggle-sidebar" id="toggle-sidebar">
-								<i class="bi bi-text-indent-left fs-5"></i>
-							</button>
-							<button class="btn btn-outline-primary me-2 pin-sidebar" id="pin-sidebar">
-								<i class="bi bi-text-indent-left fs-5"></i>
-							</button>
-						</div>
-						<!-- Toggle buttons end -->
-
-						<!-- App brand sm start -->
-						<div class="app-brand-sm d-md-none d-sm-block">
-							<a href="index.html">
-								<img src="assets/images/logotvx.png" class="logo" alt="TVX Dentist Clinic">
-							</a>
-						</div>
-						<!-- App brand sm end -->
-
-						<!-- Breadcrumb start -->
-						<ol class="breadcrumb d-none d-lg-flex ms-3">
-							<li class="breadcrumb-item">
-								<i class="bi bi-house lh-1"></i>
-								<a href="index.html" class="text-decoration-none">Home</a>
-							</li>
-							<li class="breadcrumb-item text-secondary">Xác nhận đặt phòng</li>
-						</ol>
-						<!-- Breadcrumb end -->
-
-						<!-- App header actions start -->
-						<div class="header-actions">
-							<div class="dropdown">
-								<a class="dropdown-toggle d-flex px-3 py-4 position-relative" href="#!" role="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="assets/images/flags/1x1/vn.svg" class="flag-img" alt="TVX Dentist Clinic" />
-								</a>
-								<div class="dropdown-menu dropdown-menu-end shadow-sm dropdown-menu-mini">
-									<div class="country-container">
-										<a href="index.html" class="py-2">
-											<img src="assets/images/flags/1x1/gb.svg" alt="Admin Panel" />
-										</a>
-										
-									</div>
-								</div>
-							</div>
-							
-							
-							<div class="dropdown border-start">
-								<a class="dropdown-toggle d-flex px-3 py-4 position-relative" href="#!" role="button"
-									data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-envelope-open fs-4 lh-1 text-secondary"></i>
-									<span class="count-label"></span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end dropdown-menu-md shadow-sm">
-									<a href="javascript:void(0)" class="dropdown-item">
-										<div class="d-flex py-2">
-											<i class="bi bi-bell" style="font-size: 15px; width: 20px;"></i>
-											<div class="m-0">
-												
-												<h5 class="mb-1">Thông báo</h5>
-												<p class="mb-1 text-secondary">
-													Bạn đã đi làm 
-														<span class="text-danger text-semibold">10/14</span> buổi trong tuần trước
-												</p>
-												<p class="small m-0 text-secondary">Today, 07:30am</p>
-											</div>
-										</div>
-									</a>
-									
-									<div class="d-grid mx-3 my-3">
-										<a href="javascript:void(0)" class="btn btn-primary">View all</a>
-									</div>
-								</div>
-							</div>
-							<div class="dropdown ms-2">
-								<a id="userSettings" class="dropdown-toggle d-flex py-2 align-items-center text-decoration-none"
-									href="#!" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="assets/images/soCute.jpg" class="rounded-2 img-3x" alt="Bootstrap Gallery" />
-								</a>
-								<div class="dropdown-menu dropdown-menu-end shadow-sm">
-									<div class="p-3 border-bottom mb-2">
-										<h6 class="mb-1">Lê Văn Minh</h6>
-										<p class="m-0 small opacity-50">levanminhn@gmail.com</p>
-									</div>
-									<a class="dropdown-item d-flex align-items-center" href="canhan.html"><i
-										class="bi bi-person fs-4 me-2"></i>Thông tin</a>
-								<a class="dropdown-item d-flex align-items-center" href="canhan.html"><i
-										class="bi bi-gear fs-4 me-2"></i>Đổi mật khẩu</a>
-								<div class="d-grid p-3 py-2">
-									<a class="btn btn-danger" href="login.html">Đăng xuất</a>
-								</div>
-								</div>
-							</div>
-						</div>
-						<!-- App header actions end -->
-
-					</div>
+					<jsp:include page="/back/header.jsp"></jsp:include>
 					<!-- App header ends -->
 
 					<!-- App body starts -->
@@ -265,25 +92,30 @@
 						<hr class="mt-0">
 						<!-- Container starts -->
 						<!-- Container starts -->
-						
+						<%  
+							try {
+								if(b.next()) {	
+						%>
 						<div class="container-fluid">
 							<div class="d-flex gap-2 justify-content-end mb-2">
-								<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-									<i class="bi bi-plus-square"></i> Xác nhận
-								</button>
-								<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#confirmModal">
-									<i class="bi bi-pencil-square"></i> Huỷ
-								</button>
+								<%if(b.getString("booking_status").equalsIgnoreCase("Chờ xác nhận")){ %>
+									<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+										<i class="bi bi-plus-square"></i> Xác nhận
+									</button>
+									<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#confirmModal">
+										<i class="bi bi-pencil-square"></i> Huỷ
+									</button>
+								<%} %>
 								
 								
 								
-								<a type="button" class="btn btn-outline-secondary" href="trangThai.html">
+								<a type="button" class="btn btn-outline-secondary" href="QLDonDat.jsp">
 									Cancel
 								</a>
 
 							</div>
 							<!-- Row start -->
-				
+							
 							<div class="row gx-3">
 								<div class="col-xxl-12">
 									<div class="card mb-3">
@@ -291,10 +123,7 @@
 											<h5 class="card-title">Khách hàng</h5>
 											
 										</div>
-										<%  
-											try {
-												if(b.next()) {	
-										%>
+										
 										<div class="card-body">
 											<!-- Row start -->
 											<div class="row gx-3">
@@ -407,13 +236,7 @@
 											</div>
 											<!-- Row end -->
 										</div>
-										<%
-											} 
-												}catch (SQLException e) {
-														// TODO Auto-generated catch block
-													e.printStackTrace();
-												}
-										%>
+										
 									</div>
 								</div>
 							</div>
@@ -425,10 +248,7 @@
 										<div class="card-header">
 											<h5 class="card-title">Thông tin phòng</h5>
 										</div>
-										<%  
-											try {
-														if(b.next()) {	
-										%>
+										
 										<div class="card-body">
 											<!-- Row start -->
 											<div class="row gx-3">
@@ -475,19 +295,20 @@
 											</div>
 											<!-- Row end -->
 										</div>	
-										<%
-												} 
-											}catch (SQLException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-										%>	
+										
 									</div>
 								</div>
 							</div>
+							
 							<!-- Row end -->
 						</div>
-						
+						<%
+								} 
+							}catch (SQLException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						%>	
 						<!-- Container ends -->
 						<!-- Container ends -->
 

@@ -30,6 +30,10 @@
 			        if (currentPath.endsWith("/role.jsp")) activePage = "Quản lý quyền";
 			        else if (currentPath.endsWith("/User.jsp")) activePage = "Hồ sơ người dùng";
 			        else if (currentPath.endsWith("/dashboard.jsp")) activePage = "Thống kê";
+			        else if (currentPath.endsWith("/QLDonDat.jsp")) activePage = "Danh sách phòng đang đặt";
+			        else if (currentPath.endsWith("/QLPhong.jsp")) activePage = "Quản lý phòng";
+			        else if (currentPath.endsWith("/thuTinTuc.jsp")) activePage = "Thư tin tức";
+			        else if (currentPath.endsWith("/phongTra.jsp")) activePage = "Thanh toán";
 			        request.setAttribute("activePage", activePage);
 			      	
 				    Role r=new RoleImpl();
@@ -44,33 +48,32 @@
 			</li>
 		    <% } %>
 		    <% if (per.contains("read") && per.contains("update")) { %>
-			<li>
-				<a href="trangThai.html">
+			<li class="<%= currentPath.endsWith("/back/QLDonDat.jsp") ? "active current-page" : "" %>">
+				<a href="<%= request.getContextPath()%>/back/QLDonDat.jsp">
 					<i class="bi bi-pen"></i>
 					<span class="menu-text" style="white-space: nowrap;">Trạng thái</span>
 				</a>
 			</li>
-			<li>
-				<a href="thuTinTuc.html">
+			<li class="<%= currentPath.endsWith("/back/thuTinTuc.jsp") ? "active current-page" : "" %>">
+				<a href="<%= request.getContextPath()%>/back/thuTinTuc.jsp">
 					<i class="bi bi-newspaper"></i>
 					<span class="menu-text" style="white-space: nowrap;">Thư tin tức</span>
 				</a>
 			</li>
 			<%} %>
 			<% if (per.contains("read") && per.contains("update") && per.contains("delete") && per.contains("create")) { %>
-			<li>
-				<a href="<%= request.getContextPath()%>/back/booking.jsp">
+			<li  class="<%= currentPath.endsWith("/back/QLPhong.jsp") ? "active current-page" : "" %>">
+				<a href="<%= request.getContextPath()%>/back/QLPhong.jsp">
 					<i class="bi bi-clipboard-plus"></i>
 					<span class="menu-text" style="white-space: nowrap;">Quản lý phòng</span>
 				</a>
 			</li>
 			<%} %>
 			<% if (per.contains("read")) { %>
-			<li>
-				<a href="phongBook.html">
+			<li >
+				<a href="<%= request.getContextPath()%>/back/QLDonDat.jsp">
 					<i class="bi bi-postcard-heart"></i>
 					<span class="menu-text" style="white-space: nowrap;">Danh sách phòng đang đặt</span>
-					
 				</a>
 			</li>
 			<%} %>
@@ -89,8 +92,8 @@
 		    </li>
 		    <%} %>
 		    <% if (per.contains("read") && per.contains("update")) { %>
-			<li>
-				<a href="phongTra.html">
+			<li class="<%= currentPath.endsWith("/back/phongTra.jsp") ? "active current-page" : "" %>">
+				<a href="<%= request.getContextPath() %>/back/phongTra.jsp">
 					<i class="bi bi-card-checklist"></i>
 					<span class="menu-text" style="white-space: nowrap;">Thanh toán</span>
 				</a>

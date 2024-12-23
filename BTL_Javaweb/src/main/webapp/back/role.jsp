@@ -45,6 +45,7 @@
 
 		<!-- Date Range CSS -->
 		<link rel="stylesheet" href="<%= request.getContextPath() %>/back/assets/vendor/daterange/daterange.css" />
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 		<script>
         function passIdToModal(id) { 
         	document.getElementById("updateId").value = id;
@@ -118,9 +119,8 @@
 											</div>	
 										</div>
 										<div class="card-body">											
-											<div class="border border-dark rounded-3 mt-4">
-												<div class="table-responsive">
-													<table class="table align-middle table-striped table-hover m-0">
+										
+													<table id="Table" class="table align-middle table-striped table-hover m-0 border rounded-3 mt-4">
 														<thead>
 															<tr>
 																<th>ID</th>
@@ -132,8 +132,10 @@
 														
 														<tbody id="roleTable">
 															<%
+															int count=0;
 															try {
 																while(a.next()) {
+																	count++;
 															%>
 															<tr>
 																<td class="id"><%=a.getInt("role_id") %></td>
@@ -190,23 +192,6 @@
 													</div>
 												</div>
 											</div>
-											<!-- Phân trang -->
-											<nav aria-label="Page navigation example">
-												<ul class="pagination justify-content-left" style="margin-top: 20px;" id="pagination">
-												  <li class="page-item" id="prevPage">
-													<a class="page-link" href="#" aria-label="Previous" onclick="changePage('prev')">Previous</a>
-												  </li>
-												  <li class="page-item" id="page1" class="active">
-													<a class="page-link" href="#" onclick="changePage(1)">1</a>
-												  </li>
-												  <li class="page-item" id="page2">
-													<a class="page-link" href="#" onclick="changePage(2)">2</a>
-												  </li>
-												  <li class="page-item" id="nextPage">
-													<a class="page-link" href="#" aria-label="Next" onclick="changePage('next')">Next</a>
-												  </li>
-												</ul>
-											</nav>
 											
 											<!-- Modal update-->
 											<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -295,7 +280,7 @@
 		<script src="<%= request.getContextPath() %>/back/assets/js/jquery.min.js"></script>
 		<script src="<%= request.getContextPath() %>/back/assets/js/bootstrap.bundle.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+		<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 		<!-- *************
 			************ Vendor Js Files *************
 		************* -->
@@ -315,84 +300,15 @@
 		<script src="<%= request.getContextPath() %>/back/assets/js/custom.js"></script>
 
 		<script>
-			let currentPage = 1;
-			const recordsPerPage = 5;  
-			const totalRows = document.getElementById('roleTable').children.length;
-			const totalPages = Math.ceil(totalRows / recordsPerPage);  
-		
-
-			function changePage(page) {
-				if (page < 1 || page > totalPages) return;  
-				currentPage = page;
-				const rows = document.getElementById('roleTable').children;
-				let start = (page - 1) * recordsPerPage;
-				let end = start + recordsPerPage;
-		
-
-				for (let i = 0; i < totalRows; i++) {
-					rows[i].style.display = 'none';
-				}
-	
-				for (let i = start; i < end && i < totalRows; i++) {
-					rows[i].style.display = '';
-				}
-
-				updatePagination();
-			}
-
-
-			function updatePagination() {
-				const pagination = document.getElementById('pagination');
-				pagination.innerHTML = '';
-
-				const prevPage = document.createElement('li');
-				prevPage.classList.add('page-item');
-				prevPage.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Previous</a>`;
-				prevPage.classList.toggle('disabled', currentPage === 1);
-				pagination.appendChild(prevPage);
-
-				for (let i = 1; i <= totalPages; i++) {
-					const pageItem = document.createElement('li');
-					pageItem.classList.add('page-item');
-					pageItem.classList.toggle('active', currentPage === i);
-					pageItem.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
-					pagination.appendChild(pageItem);
-				}
-		
-
-				const nextPage = document.createElement('li');
-				nextPage.classList.add('page-item');
-				nextPage.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Next</a>`;
-				nextPage.classList.toggle('disabled', currentPage === totalPages);
-				pagination.appendChild(nextPage);
-			}
-
-			window.onload = function() {
-				changePage(1); 
-			};
-
-            //Search
-			document.getElementById('searchInput').addEventListener('input', function() {
-    		var input = this.value.toLowerCase(); 
-   			var rows = document.getElementById('userTable').getElementsByTagName('tr'); 
-
-
-    		for (var i = 0; i < rows.length; i++) {
-        	var idCell = rows[i].getElementsByClassName('id')[0];
-        	var nameCell = rows[i].getElementsByClassName('name')[0]; 
-
- 
-        	if (idCell && nameCell) {
-            	var idText = idCell.textContent.toLowerCase(); 
-            	var nameText = nameCell.textContent.toLowerCase();     
-            	if (idText.includes(input) || nameText.includes(input)) {
-                	rows[i].style.display = ''; 
-            		} else {
-                			rows[i].style.display = 'none'; 
-            			}
-        			}
-    			}
+			$('#Table').DataTable({
+			  paging: true,           
+			  searching: false,         
+			  ordering: false,          
+			  lengthChange: false,     
+			  pageLength: 5            
 			});
+
+           
             $(document).ready(function() {
 
            $(".deleteBtn").click(function() {
