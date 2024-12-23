@@ -22,22 +22,24 @@
                 id="bs-example-navbar-collapse-1">
                 <nav class="menu menu--iris">
                     <ul class="nav navbar-nav menu__list">
-                        <li class="menu__item menu__item--current"><a href="index.html"
-                            class="menu__link">Trang chủ</a></li>
                         <% 
                             HttpSession s = request.getSession(false);
                             ResultSet logUser = (ResultSet) s.getAttribute("logUser");
+            				String currentPath = request.getRequestURI();
                         %>
-
+                        
+                        <li class="menu__item <%= currentPath.endsWith("/front/index.jsp") ? "menu__item--current" : "" %>">
+                        <a href="<%= request.getContextPath()%>/front/index.jsp" class="menu__link">Trang chủ</a></li>
+                        
                         <!-- Đặt phòng -->
-                        <li class="menu__item">
-                            <a href="<%= (logUser == null) ? "#" : "reservation.html" %>" class="menu__link" 
+                        <li class="menu__item <%= currentPath.endsWith("/front/reservation.jsp") ? "menu__item--current" : "" %>">
+                            <a href="<%= (logUser == null) ? "#" : "reservation.jsp" %>" class="menu__link" 
                                 onclick="return checkLogin();">Đặt phòng</a>
                         </li>
 
                         <!-- Xem đơn đặt phòng -->
-                        <li class="menu__item">
-                            <a href="<%= (logUser == null) ? "#" : "check.html" %>" class="menu__link" 
+                        <li class="menu__item <%= currentPath.endsWith("/front/check.jsp") ? "menu__item--current" : "" %>">
+                            <a href="<%= (logUser == null) ? "#" : "check.jsp" %>" class="menu__link" 
                                 onclick="return checkLogin();">Xem đơn đặt phòng</a>
                         </li>
 
@@ -79,4 +81,20 @@
             }
         %>
     }
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy tất cả các phần tử li có class "menu__item"
+        const menuItems = document.querySelectorAll('.menu__list .menu__item');
+
+        menuItems.forEach(item => {
+            // Gắn sự kiện click vào từng thẻ li
+            item.addEventListener('click', function () {
+                // Loại bỏ class "menu__item--current" khỏi tất cả các mục menu
+                menuItems.forEach(i => i.classList.remove('menu__item--current'));
+
+                // Thêm class "menu__item--current" vào thẻ li được nhấn
+                this.classList.add('menu__item--current');
+            });
+        });
+    });
 </script>

@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="ads.objects.*" %>
-<%@page import="ads.booking.*" %>
-<%@page import="java.util.*" %>
-<%@page import="java.sql.*" %>
-<%
-	booking u=new bookingImpl();	
-%>
-<!DOCTYPE html>
+
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,7 +10,7 @@
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
 <!-- <meta name="keywords" content="Resort Inn Responsive , Smartphone Compatible web template , Samsung, LG, Sony Ericsson, Motorola web design" /> -->
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
+<!-- <link href="assets/css/bootstrap.css" rel="stylesheet" /> -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
@@ -27,17 +21,11 @@
 <link rel="stylesheet" href="css/reservation.css">
 <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
 <link rel="stylesheet" href="css/datPhong.css">
-
 <!--fonts-->
 <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> -->
-<script type="text/javascript">
-	function passIdToModal(id) { 
-	    document.getElementById("modalDeleteReason").value = id;
-	}
-</script>
 </head>
 <body>
     <div class="banner-top">
@@ -68,116 +56,89 @@
         </div>
         <div class="clearfix"></div>
     </div>
-   <jsp:include page="/front/menu.jsp"></jsp:include>
+    <jsp:include page="/front/menu.jsp"></jsp:include>
     <!-- Phòng start-->
     <div class="plans-section">
-        <div class="container mt-4">
+        <div class="container mt-5">
             <div class="row">
                 <!-- Sidebar -->
-                <div class="col-sm-12">
+                <div class="col-sm-3">
                     <div class="panel-body" style="margin-bottom: 40px;">
-                        <div class="border border-dark rounded-3">
-                            <div class="table-responsive">
-                                <table class="table align-middle table-striped table-hover m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã đơn đặt phòng</th>
-                                            <th>Số ngày dự kiến</th>
-                                            <th>Ngày đặt</th>
-                                            <th>Ngày trả</th>
-                                            <th>Giá phòng</th>
-                                            <th>Ghi chú</th>
-                                            <th>Trạng thái</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% 
-                                        	HttpSession s = request.getSession(false);
-                                        	int id=(int)s.getAttribute("logUserId");
-                                        	ArrayList<ResultSet> rs =u.getUserBooking(null,id);
-											ResultSet r=rs.get(0);
-											try {
-												while(r.next()) {		
-										%>
-                                        <tr>
-                                            <td><%=r.getInt("booking_id") %></td>
-                                            <td><%=r.getInt("est_Days") %></td>
-                                            <td><%=r.getString("check_in_date") %></td>
-                                            <td><%=r.getString("check_out_date") %></td>
-                                            <td><%=r.getInt("total_price") %> VND</td>
-                                            <td><%=r.getString("booking_notes") %></td>
-                                            <td><%=r.getString("booking_status") %></td>
-                                            <td>
-                                                <%
-                                                  if(r.getString("booking_status").equalsIgnoreCase("Chờ xác nhận")){
-                                                %>
-                                               	<button class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" onclick="passIdToModal('<%= r.getInt("booking_id") %>')">
-                                                    <i class="fa fa-trash"></i> Huỷ đơn
-                                                </button>
-                                                <%} %>
-                                            </td>
-                                        </tr>
-                                        <%
-												} 
-											}catch (SQLException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-										%>
-                                    </tbody>
-                                </table>
-                                
-                            </div>
+                        <div class="form-group">
+                            <label class="centered-label">CHI TIẾT</label>
+                            <hr class="d-sm-none">
                         </div>
                         
-    <!-- Modal for cancel confirmation -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelModalLabel">Xác nhận huỷ đơn</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Bạn có chắc chắn muốn huỷ đơn này không? Hành động này không thể hoàn tác.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <form action="<%= request.getContextPath() %>/cusCancelBooking" method="post">
-                    	<input type="hidden" name="cancelBooking_id" id="modalDeleteReason">
-                    	<input type="hidden" name="deleteReason" value="Khách hủy phòng">
-                    	<button type="submit" class="btn btn-danger">Xác nhận huỷ</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal for cancellation success -->
-    <div class="modal fade" id="cancelSuccessModal" tabindex="-1" role="dialog" aria-labelledby="cancelSuccessModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelSuccessModalLabel">Huỷ đơn thành công</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Đơn của bạn đã được huỷ thành công. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-                </div>
+                        <div class="details">
+                            <p>Nhận phòng <span class="float-right">2024-11-11</span></p>
+                            <p>Trả phòng <span class="float-right">2024-11-20</span></p>
+                            <p>Tổng ngày <span class="float-right">3 ngày</span></p>
+                            <p>Tổng phòng <span class="float-right">1</span></p>
+                            <p>Tổng khách <span class="float-right">3 người</span></p>
+                        </div>
+                    </div>
+                    <div class="panel-body" style="margin-bottom: 10px;">
+                        <div class="form-group">
+                            <label class="centered-label">CHỌN PHÒNG</label>
+                            <hr class="d-sm-none">
+                        </div>
+                        <div class="details">
+                            <p style="font-weight: bold; color: black;">ROOM 1 <span class="float-right">3 người</span></p>
+                            <p class="fl1">PHÒNG ĐƠN</p>
+                            <hr class="d-sm-none">
+                            <p>Giá phòng <span class="float-right">6.000.000đ</span></p>
+                            <p>VAT <span class="float-right">600.000đ</span></p>
+                            <p>Phí dịch vụ <span class="float-right">FREE</span></p>
+                            <p class="total-amount">TỔNG CỘNG <span class="float-right">6.600.000đ</span></p>
+                        </div>
                     </div>
                 </div>  
+                <div class="col-sm-1"></div>          
+                <!-- Content Area -->
+                <div class="col-sm-8">
+                    <div id="overview" class="tab-content active">
+                        <h1>THÔNG TIN KHÁCH HÀNG</h1>
+                        <div class="row">
+                            <!-- Họ và tên ở 1 dòng -->
+                            <div class="col-lg-12 col-sm-12 col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Họ và tên:</label>
+                                    <input type="text" class="form-control" placeholder="Họ và tên bệnh nhân" value="Lê Văn Minh"/>
+                                </div>
+                            </div>
+    
+                            <!-- Email và số điện thoại ở dòng thứ 2 -->
+                            <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Số điện thoại:</label>
+                                    <input type="text" class="form-control" placeholder="Số điện thoại" value="0123456789"/>
+                                </div>
+                            </div>
+    
+                            <div class="col-lg-6 col-sm-6 col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Email:</label>
+                                    <input type="email" class="form-control" placeholder="Email" value="levanminh@gmail.com"/>
+                                </div>
+                            </div>
+    
+                            <!-- Ghi chú ở dòng thứ 3 -->
+                            <div class="col-lg-12 col-sm-12 col-12">
+                                <div class="mb-3">
+                                    <label class="form-label">Ghi chú</label>
+                                    <textarea class="form-control" placeholder="Enter message" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <a type="button" class="b1" 
+   href="<%=request.getContextPath()%>/front/xemChiTiet.jsp" 
+   onclick="return confirmBooking();">
+   XÁC NHẬN
+</a>
+                        <a type="button" class="b2" href="<%=request.getContextPath()%>/front/xemChiTiet.jsp">QUAY LẠI</a>
+                    </div>     
+                </div>
             </div>
             <hr class="d-sm-none">
         </div>
@@ -208,7 +169,7 @@
 </section>
 <!-- /contact -->
 <div class="copy">
-    <p>© 2024 Easy Stay . All Rights Reserved | Design by <a href="<%= request.getContextPath() %>/back/index.jsp">Easy Stay</a> </p>
+    <p>© 2024 Easy Stay . All Rights Reserved | Design by <a href="index.html">Easy Stay</a> </p>
 </div>
 <!--/footer -->
 <!-- js -->
@@ -330,11 +291,7 @@ $().UItoTop({ easingType: 'easeOutQuart' });
 <!-- //smooth scrolling -->
 <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 <script>
- $('#confirmCancel').click(function() {
-            // Simulate cancellation success
-            $('#cancelModal').modal('hide');
-            $('#cancelSuccessModal').modal('show');
-        });
+
 </script>
 </body>
 </html>

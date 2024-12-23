@@ -1,22 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="ads.objects.*" %>
-<%@page import="ads.booking.*" %>
-<%@page import="java.util.*" %>
-<%@page import="java.sql.*" %>
-<%
-	booking u=new bookingImpl();	
-%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Stay</title>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-<!-- <meta name="keywords" content="Resort Inn Responsive , Smartphone Compatible web template , Samsung, LG, Sony Ericsson, Motorola web design" /> -->
-<link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Resort Inn Responsive , Smartphone Compatible web template , Samsung, LG, Sony Ericsson, Motorola web design" />
+<!-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script> -->
+<!-- //for-mobile-apps -->
+<!-- <link href="assets/css/bootstrap.css" rel="stylesheet" /> -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <link href="css/font-awesome.css" rel="stylesheet"> 
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
@@ -26,18 +22,10 @@
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" href="css/reservation.css">
 <script type="text/javascript" src="js/modernizr-2.6.2.min.js"></script>
-<link rel="stylesheet" href="css/datPhong.css">
-
 <!--fonts-->
 <link href="//fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> -->
-<script type="text/javascript">
-	function passIdToModal(id) { 
-	    document.getElementById("modalDeleteReason").value = id;
-	}
-</script>
 </head>
 <body>
     <div class="banner-top">
@@ -68,118 +56,91 @@
         </div>
         <div class="clearfix"></div>
     </div>
-   <jsp:include page="/front/menu.jsp"></jsp:include>
+    <jsp:include page="/front/menu.jsp"></jsp:include>
     <!-- Phòng start-->
-    <div class="plans-section">
-        <div class="container mt-4">
-            <div class="row">
-                <!-- Sidebar -->
-                <div class="col-sm-12">
-                    <div class="panel-body" style="margin-bottom: 40px;">
-                        <div class="border border-dark rounded-3">
-                            <div class="table-responsive">
-                                <table class="table align-middle table-striped table-hover m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Mã đơn đặt phòng</th>
-                                            <th>Số ngày dự kiến</th>
-                                            <th>Ngày đặt</th>
-                                            <th>Ngày trả</th>
-                                            <th>Giá phòng</th>
-                                            <th>Ghi chú</th>
-                                            <th>Trạng thái</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <% 
-                                        	HttpSession s = request.getSession(false);
-                                        	int id=(int)s.getAttribute("logUserId");
-                                        	ArrayList<ResultSet> rs =u.getUserBooking(null,id);
-											ResultSet r=rs.get(0);
-											try {
-												while(r.next()) {		
-										%>
-                                        <tr>
-                                            <td><%=r.getInt("booking_id") %></td>
-                                            <td><%=r.getInt("est_Days") %></td>
-                                            <td><%=r.getString("check_in_date") %></td>
-                                            <td><%=r.getString("check_out_date") %></td>
-                                            <td><%=r.getInt("total_price") %> VND</td>
-                                            <td><%=r.getString("booking_notes") %></td>
-                                            <td><%=r.getString("booking_status") %></td>
-                                            <td>
-                                                <%
-                                                  if(r.getString("booking_status").equalsIgnoreCase("Chờ xác nhận")){
-                                                %>
-                                               	<button class="btn btn-danger" data-toggle="modal" data-target="#cancelModal" onclick="passIdToModal('<%= r.getInt("booking_id") %>')">
-                                                    <i class="fa fa-trash"></i> Huỷ đơn
-                                                </button>
-                                                <%} %>
-                                            </td>
-                                        </tr>
-                                        <%
-												} 
-											}catch (SQLException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-										%>
-                                    </tbody>
-                                </table>
-                                
-                            </div>
-                        </div>
-                        
-    <!-- Modal for cancel confirmation -->
-    <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelModalLabel">Xác nhận huỷ đơn</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div class="plans-section" id="rooms">
+        <div class="container">
+        <!-- <h3 class="title-w3-agileits title-black-wthree">Phòng và giá</h3> -->
+        <div class="pricing-table-main">
+            <div class="price-grid">
+                <div class="price-image">
+                    <img src="images/doi.jfif" alt="Room Image" class="room-image" />
                 </div>
-                <div class="modal-body">
-                    Bạn có chắc chắn muốn huỷ đơn này không? Hành động này không thể hoàn tác.
+                <div class="price-info">
+                    <h4>PHÒNG SANG TRỌNG</h4>
+                    <p class="price">1,325,000₫ / NGÀY</p>
+                    <p class="price-tt">Không gian phòng được ưu đãi ban công thoáng mát với hướng nhìn toàn cảnh ra biển giúp tâm hồn bạn được vỗ về, an yên. Thêm đó, sự kết...</p>
+                    <ul>
+                        <li>Số lượng: 4 người</li>
+                        <li>Diện tích: 37m²</li>
+                        <li>Hướng nhìn: Một phần biển</li>
+                        <li>Loại giường: Double và Twin</li>
+                    </ul>
+                    <a class="view-more-btn" type="button" href="<%=request.getContextPath()%>/front/xemChiTiet.jsp?type=1&&price=1325000">Xem thêm</a>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    <form action="<%= request.getContextPath() %>/cusCancelBooking" method="post">
-                    	<input type="hidden" name="cancelBooking_id" id="modalDeleteReason">
-                    	<input type="hidden" name="deleteReason" value="Khách hủy phòng">
-                    	<button type="submit" class="btn btn-danger">Xác nhận huỷ</button>
-                    </form>
-                </div>
+                
             </div>
         </div>
-    </div>
-
-    <!-- Modal for cancellation success -->
-    <div class="modal fade" id="cancelSuccessModal" tabindex="-1" role="dialog" aria-labelledby="cancelSuccessModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cancelSuccessModalLabel">Huỷ đơn thành công</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="pricing-table-main">
+            <div class="price-grid">
+                <div class="price-image">
+                    <img src="images/a3.jpg" alt="Room Image" class="room-image" />
                 </div>
-                <div class="modal-body">
-                    Đơn của bạn đã được huỷ thành công. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.
+                <div class="price-info-2">
+                    <h4>PHÒNG ĐƠN</h4>
+                    <p class="price">450,000₫ / NGÀY</p>
+                    <p class="price-tt">Không gian phòng được ưu đãi ban công thoáng mát với hướng nhìn toàn cảnh ra biển giúp tâm hồn bạn được vỗ về, an yên. Thêm đó, sự kết...</p>
+                    <ul>
+                        <li>Số lượng: 4 người</li>
+                        <li>Diện tích: 37m²</li>
+                        <li>Hướng nhìn: Một phần biển</li>
+                        <li>Loại giường: Double và Twin</li>
+                    </ul>
+                    <a class="view-more-btn" type="button" href="<%=request.getContextPath()%>/front/xemChiTiet.jsp?type=2&&price=450000">Xem thêm</a>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
-                </div>
+                
             </div>
         </div>
-    </div>
+        <div class="pricing-table-main">
+            <div class="price-grid">
+                <div class="price-image">
+                    <img src="images/doi.jfif" alt="Room Image" class="room-image" />
                 </div>
-                    </div>
-                </div>  
+                <div class="price-info">
+                    <h4>PHÒNG CAO CẤP</h4>
+                    <p class="price">1,050,000₫ / NGÀY</p>
+                    <p class="price-tt">Không gian phòng được ưu đãi ban công thoáng mát với hướng nhìn toàn cảnh ra biển giúp tâm hồn bạn được vỗ về, an yên. Thêm đó, sự kết...</p>
+                    <ul>
+                        <li>Số lượng: 4 người</li>
+                        <li>Diện tích: 37m²</li>
+                        <li>Hướng nhìn: Một phần biển</li>
+                        <li>Loại giường: Double và Twin</li>
+                    </ul>
+                    <a class="view-more-btn" type="button" href="<%=request.getContextPath()%>/front/xemChiTiet.jsp?type=3&&price=1050000">Xem thêm</a>
+                </div>
+                
             </div>
-            <hr class="d-sm-none">
+        </div>
+        <div class="pricing-table-main">
+            <div class="price-grid">
+                <div class="price-image">
+                    <img src="images/a3.jpg" alt="Room Image" class="room-image" />
+                </div>
+                <div class="price-info-2">
+                    <h4>PHÒNG KHÁCH</h4>
+                    <p class="price">700,000₫ / NGÀY</p>
+                    <p class="price-tt">Không gian phòng được ưu đãi ban công thoáng mát với hướng nhìn toàn cảnh ra biển giúp tâm hồn bạn được vỗ về, an yên. Thêm đó, sự kết...</p>
+                    <ul>
+                        <li>Số lượng: 4 người</li>
+                        <li>Diện tích: 37m²</li>
+                        <li>Hướng nhìn: Một phần biển</li>
+                        <li>Loại giường: Double và Twin</li>
+                    </ul>
+                    <a class="view-more-btn" type="button" href="<%=request.getContextPath()%>/front/xemChiTiet.jsp?type=4&&price=700000">Xem thêm</a>
+                </div>
+                
+            </div>
+        </div>
         </div>
     </div>
     <!-- end -->
@@ -208,7 +169,7 @@
 </section>
 <!-- /contact -->
 <div class="copy">
-    <p>© 2024 Easy Stay . All Rights Reserved | Design by <a href="<%= request.getContextPath() %>/back/index.jsp">Easy Stay</a> </p>
+    <p>© 2024 Easy Stay . All Rights Reserved | Design by <a href="index.html">Easy Stay</a> </p>
 </div>
 <!--/footer -->
 <!-- js -->
@@ -330,11 +291,8 @@ $().UItoTop({ easingType: 'easeOutQuart' });
 <!-- //smooth scrolling -->
 <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
 <script>
- $('#confirmCancel').click(function() {
-            // Simulate cancellation success
-            $('#cancelModal').modal('hide');
-            $('#cancelSuccessModal').modal('show');
-        });
+
+
 </script>
 </body>
 </html>

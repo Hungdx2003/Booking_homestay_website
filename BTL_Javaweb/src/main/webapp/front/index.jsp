@@ -134,7 +134,7 @@
 										<img src="images/banner1.webp" alt=" " class="img-responsive">
 										<h5>
 Chúng tôi biết bạn yêu thích điều gì</h5>
-										<p>Mang đến cho du khách tầm nhìn độc đáo và mê hoặc từ các phòng nghỉ cùng với các tiện nghi đặc biệt, Easy Stay trở thành một trong những khách sạn tốt nhất cùng loại. Hãy thử thực đơn đồ ăn, dịch vụ tuyệt vời và đội ngũ nhân viên thân thiện của chúng tôi khi bạn ở đây.
+										<p>Mang đến cho du khách tầm nhìn độc đáo và mê hoặc từ các phòng nghỉ cùng với các tiện nghi đặc biệt, Easy Stay trở thành một trong những homestay tốt nhất cùng loại. Hãy thử thực đơn đồ ăn, dịch vụ tuyệt vời và đội ngũ nhân viên thân thiện của chúng tôi khi bạn ở đây.
 </p>
 									</div>
 								</div>
@@ -143,7 +143,7 @@ Chúng tôi biết bạn yêu thích điều gì</h5>
 <!-- //Modal1 -->
 <div id="availability-agileits">
 <div class="col-md-12 book-form-left-w3layouts">
-	<a href="reservation.html"><h2>Đặt phòng</h2></a>
+	<a href="reservation.jsp"><h2>Đặt phòng</h2></a>
 </div>
 
 			<div class="clearfix"> </div>
@@ -194,7 +194,7 @@ Trải nghiệm kỳ nghỉ thú vị, tận hưởng ưu đãi hấp dẫn</spa
  	<div class="about-wthree" id="about">
 		  <div class="container">
 				   <div class="ab-w3l-spa">
-                            <h3 class="title-w3-agileits title-black-wthree">Giới thiệu về khách sạn Easy Stay</h3> 
+                            <h3 class="title-w3-agileits title-black-wthree">Giới thiệu về homestay Easy Stay</h3> 
 						   <p class="about-para-w3ls">Tận hưởng sự thoải mái sang trọng với các phòng và dãy phòng được thiết kế tỉ mỉ của chúng tôi, mỗi phòng đều được bài trí chu đáo để đáp ứng nhu cầu của du khách hiện đại. Từ khung cảnh ngoạn mục của thành phố đến bộ khăn trải giường sang trọng và tiện nghi tiên tiến, kỳ nghỉ của bạn với chúng tôi hứa hẹn sự kết hợp hoàn hảo giữa phong cách và chất lượng.</p>
 						   <img src="images/about.jpg" class="img-responsive" alt="Hair Salon">
 										<div class="w3l-slider-img">
@@ -367,7 +367,7 @@ Trải nghiệm kỳ nghỉ thú vị, tận hưởng ưu đãi hấp dẫn</spa
 								<i class="fa fa-star" aria-hidden="true"></i>
 								Đáng để đến lần nữa
 								</h4>
-								<p>Từ khi bước vào phòng, bạn sẽ bị cuốn hút bởi không gian sang trọng và tiện nghi hiện đại. Được thiết kế với sự chú ý đặc biệt đến chi tiết và thoải mái, phòng ở của khách sạn tạo nên một không gian riêng tư và ấm cúng </p>
+								<p>Từ khi bước vào phòng, bạn sẽ bị cuốn hút bởi không gian sang trọng và tiện nghi hiện đại. Được thiết kế với sự chú ý đặc biệt đến chi tiết và thoải mái, phòng ở của homestay tạo nên một không gian riêng tư và ấm cúng </p>
 								<h5>Julia Rose</h5>
 								<p>Đức</p>
 							</div>
@@ -411,7 +411,7 @@ Trải nghiệm kỳ nghỉ thú vị, tận hưởng ưu đãi hấp dẫn</spa
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								Đáng để đến lần nữa
 								</h4>
-								<p>Nhân viên của khách sạn không chỉ là những nhân viên - họ là những người bạn và người hướng dẫn tốt nhất trong hành trình của bạn. Sự nhiệt tình và sẵn sàng giúp đỡ của họ tạo nên một không khí chào đón và gần gũi </p>
+								<p>Nhân viên của homestay không chỉ là những nhân viên - họ là những người bạn và người hướng dẫn tốt nhất trong hành trình của bạn. Sự nhiệt tình và sẵn sàng giúp đỡ của họ tạo nên một không khí chào đón và gần gũi </p>
 								<h5>Rosalind Cloer</h5>
 								<p>Ý</p>
 							</div>
@@ -432,7 +432,7 @@ Trải nghiệm kỳ nghỉ thú vị, tận hưởng ưu đãi hấp dẫn</spa
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 								<i class="fa fa-star-o" aria-hidden="true"></i>
 Đáng để đến lần nữa								</h4>
-								<p>Từ khi bước vào phòng, bạn sẽ bị cuốn hút bởi không gian sang trọng và tiện nghi hiện đại. Được thiết kế với sự chú ý đặc biệt đến chi tiết và thoải mái, phòng ở của khách sạn tạo nên một không gian riêng tư và ấm cúng </p>
+								<p>Từ khi bước vào phòng, bạn sẽ bị cuốn hút bởi không gian sang trọng và tiện nghi hiện đại. Được thiết kế với sự chú ý đặc biệt đến chi tiết và thoải mái, phòng ở của homestay tạo nên một không gian riêng tư và ấm cúng </p>
 								<h5>Nguyễn Anh Kiệt</h5>
 								<p>Việt Nam</p>
 							</div>
@@ -447,38 +447,7 @@ Trải nghiệm kỳ nghỉ thú vị, tận hưởng ưu đãi hấp dẫn</spa
 <!-- contact -->
 <section class="contact-w3ls" id="contact">
 	<div class="container">
-		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile2" data-aos="flip-left">
-			<div class="contact-agileits">
-				<h4>Liên hệ chúng tôi</h4>
-				<p class="contact-agile2">Đăng ký để được nhận tin tức từ chúng tôi</p>
-				<form  method="post" name="sentMessage" id="contactForm" >
-					<div class="control-group form-group">
-                        
-                            <label class="contact-p1">Họ và tên:</label>
-                            <input type="text" class="form-control" name="name" id="name" required >
-                            <p class="help-block"></p>
-                       
-                    </div>	
-                    <div class="control-group form-group">
-                        
-                            <label class="contact-p1">Số điện thoại:</label>
-                            <input type="tel" class="form-control" name="phone" id="phone" required >
-							<p class="help-block"></p>
-						
-                    </div>
-                    <div class="control-group form-group">
-                        
-                            <label class="contact-p1">Email:</label>
-                            <input type="email" class="form-control" name="email" id="email" required >
-							<p class="help-block"></p>
-						
-                    </div>
-                    
-                    
-                    <input type="submit" name="sub" value="Gửi ngay" class="btn btn-primary">	
-				</form>
-							</div>
-		</div>
+		<jsp:include page="/front/contact.jsp"></jsp:include>
 		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile1" data-aos="flip-right">
 			<h4>Kết nối với chúng tôi</h4>
 			<p class="contact-agile1"><strong>Số điện thoại :</strong>+84 982428142</p>
